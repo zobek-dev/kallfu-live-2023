@@ -1,0 +1,53 @@
+<div class="page-width tracking-[1.5px] my-8" id="ProductDetails">
+    <h2 class="text-center text-2xl uppercase  font-bold tracking-[2.5px] mt-[1rem] mb-[1.5rem]">
+      Detalle Producto  
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center">
+        <div>
+            {% if product.metafields.my_fields.imagen_medidas != blank %}
+                <img src="{{ product.metafields.my_fields.imagen_medidas | img_url: 'master' }}" loading="lazy" alt="dimensiones del producto">   
+            {% endif %}
+        </div>
+        <div>
+            <h3 class="text-lg uppercase tracking-[2.5px] font-bold">Medidas</h3>
+            <ul class="mb-[1rem]">
+                <li class="border-b border-[#121212] py-4">Largo: {{ product.metafields.my_fields.detalle_largo }}</li>
+                <li class="border-b border-[#121212] py-4">Ancho: {{ product.metafields.my_fields.detalle_ancho }}</li>
+                <li class="border-b border-[#121212] py-4">Alto: {{ product.metafields.my_fields.detalle_alto }}</li>
+                {% for collection in product.collections %}
+                {% if collection.title == 'Glass' %}
+                {% assign is_glass = true %}   
+                {% endif %} 
+                {% endfor %}
+
+                {% comment %}
+                {% unless is_glass %}
+                <li class="border-b border-[#121212] py-6 flex items-center justify-between">
+                    <span>¿ Quieres este producto con otras medidas ?</span>
+                    <a href="/pages/a-medida#Form" class="block border border-[#121212] py-2 px-4 w-max tracking-[2.5px] text-xs md:text-sm hover:opacity-70 text-center">CONTÁCTANOS</a>
+                </li>
+                {% endunless %}
+                {% endcomment %}
+            </ul>
+            <h3 class="text-lg uppercase tracking-[2.5px] font-bold mb-[0.5rem]">Armado</h3>
+            <p class="mb-[1rem]">Cada uno de nuestros productos se entrega completamente armado, su cubierta va ensamblada a su estructura de base rígida permitiéndole ser un mueble resistente y robusto. De esta manera solo tendrás la necesidad de ubicarlo en el espacio que más te guste de tu hogar, decorar y disfrutar de nuestro producto.</p>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[1rem] items-center product-details">
+        <div class="material-text">
+            <h3 class="text-lg uppercase tracking-[2.5px] font-bold my-[0.5rem]">Materiales y Calidad</h3>
+            <p>
+                {{ product.metafields.my_fields.texto_materiales_y_calidad }}
+            </p>
+            <h3 class="text-lg uppercase tracking-[2.5px] font-bold my-[0.5rem]">Handmade</h3>
+            <p>
+                Nuestros productos son fabricados manualmente por nuestro propio equipo, buscando el equilibrio perfecto entre diseño, funcionalidad y estilo. Preocupándonos de cada detalle en su proceso de fabricación y que llegue a la puerta del hogar de cada cliente en perfectas condiciones.
+            </p>
+        </div>
+        {% if product.metafields.my_fields.imagen_materiales != blank %}
+            <div class="material-img">
+                <img src="{{ product.metafields.my_fields.imagen_materiales | img_url: '900x'}}" alt="" width="100%">
+            </div>    
+        {% endif %}
+    </div>
+</div>

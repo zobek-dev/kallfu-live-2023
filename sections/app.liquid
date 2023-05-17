@@ -1,0 +1,22 @@
+{% for block in section.blocks %}
+{% if block.type == '@app' %}
+    {% render block %}
+{% endif %}  
+{% endfor %}
+
+{% schema %}
+{
+    "name": "App Block",
+    "blocks": [
+        {
+            "type":"@app"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Aplicaciones",
+            "category": "Apps"
+        }
+    ]
+}
+{% endschema %}

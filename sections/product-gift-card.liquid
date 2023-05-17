@@ -1,0 +1,152 @@
+<div class="page-width">
+  {% render 'breadcrumb' %} 
+  <div 
+    class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6 mb-12" 
+
+    x-data="{
+    dataUrl: '{{ product.url }}',
+    updateVariant(e){
+      const variants = JSON.parse(document.querySelector('#VariantsData').textContent);
+      const currentVariant = variants.filter(elem => elem.title === e.target.value);
+      const currentPrice = parseInt(currentVariant[0].price/12);
+      const $image = document.querySelector('.product-image');  
+      const $price = document.querySelector('.product-price');
+      const $title = document.querySelector('.product-title');
+      const $cuotas = document.querySelector('#cuotas');
+      const $id = document.querySelector('#form-id');
+      const labels = document.querySelectorAll('label');
+
+      const formatedCuotas = parseFloat(currentPrice).toString().substring(0, parseFloat(currentPrice).toString().length - 2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') 
+
+      $cuotas.innerText = `$${formatedCuotas}`;
+
+      $id.value = currentVariant[0].id;
+      $image.setAttribute('src', currentVariant[0].featured_image.src);
+      $title.innerText = `Gift Card-K ${currentVariant[0].title}`;
+      $price.innerText = currentVariant[0].title;
+      history.replaceState({ }, '', `${this.dataUrl}?variant=${currentVariant[0].id}`);
+      labels.forEach(label => {
+        if(label.classList.contains('selected-variant')) label.classList.remove('selected-variant');
+        if(label.innerText === e.target.value) label.classList.add('selected-variant');
+      })
+    }
+  }">
+    <div class="col-span-1 md:col-span-3 md:sticky md:top-12 md:self-start">
+      <div>
+        <img src="{{ product.featured_image | img_url: '1200x' }}" alt="{{ product.featured_image.alt }}" class="product-image" loading="lazy" class="object-contain w-full object-center">
+      </div>
+    </div>
+    <div
+      class="col-span-1 md:col-span-2 md:pt-8" 
+      x-data="{
+      addToCart(){
+        let formData = new FormData($refs.product_form);
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(response => {
+          this.$dispatch('cart-updated');
+          this.$dispatch('toggle-cart');
+        })
+        .catch((error) => console.log('Error', error));  
+      },
+      up(){
+        $refs.quantity_info.stepUp();
+      },
+      down(){
+        $refs.quantity_info.stepDown();
+      }     
+    }">
+      <div>
+        {%- comment -%} <p class="uppercase tracking-[1.5px] mb-2 text base">BLACK-K</p> {%- endcomment -%}
+        <h1 class="product-title text-[25px] tracking-[2.5px] font-bold uppercase leading-tight mb-4">Gift Card-K {{ product.selected_or_first_available_variant.title }}</h1>
+        <div>
+          {% if product.compare_at_price_max > product.price %}
+            <span>{{ product.selected_or_first_available_variant.price | money }}</span>
+            <s>{{ product.compare_at_price_max | money }}</s>
+          {% else %}
+            <span class="product-price text-[35px] font-bold tracking-[2.5px]">
+              {{ product.selected_or_first_available_variant.price | money }}
+            </span>
+          {% endif %}
+        </div>
+        <div class="mt-2 mb-4">
+          {% assign disccount = product.selected_or_first_available_variant.price | divided_by: 12 | money %}
+          <span class="text-sm tracking-[2.5px]">Paga hasta en <strong>12 cuotas</strong> sin interés de <strong id="cuotas">{{ disccount }}</strong></span>
+        </div>
+        <form 
+          action="{{ routes.cart_add_url }}" 
+          method="POST" 
+          id="Form-{{ product.selected_or_first_available_variant.id }}" 
+          enctype="multipart/formdata" 
+          novalidate="novalidate" 
+          x-ref="product_form"
+        >
+          <input type="hidden" name="form_type" value="product">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="form-id">
+        </form>
+
+        <div class="variant-selector block">
+          {% for option in product.options_with_values %}
+            <fieldset class="js product-form__input">
+              <legend class="uppercase font-bold tracking-[2.5px] text-sm mt-8 block">{{ option.name }}</legend>
+              {% for value in option.values %}
+                <input 
+                  type="radio" 
+                  name="{{ option.name }}" 
+                  value="{{ value | escape }}" 
+                  id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" 
+                  form="Form-{{ product.selected_or_first_available_variant.id }}" 
+                  @input="updateVariant"
+                  class="hidden"
+                  {% if option.selected_value == value %}
+                    checked
+                  {% endif %}
+                  {% if option_disabled %}
+                    class="disabled"
+                  {% endif %}
+                >
+                <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" class="inline-flex mr-2 my-2 tracking-[1px] border border-[#121212] py-1 px-4 text-base rounded-3xl cursor-pointer transition-opacity duration-500 ease-in-out hover:opacity-50 {% if option.selected_value == value %}selected-variant{% endif %}">
+                  {{ value }}
+                </label>
+              {% endfor %}
+            </fieldset>
+          {% endfor %}
+          <script type="application/json" x-ref="variants_data" id="VariantsData">
+            {{ product.variants | json }}
+          </script>  
+        </div>
+
+        <div class="quantity border border-gray-500 flex w-max focus-within:border-gray-900 my-4">
+          <button @click="down" class="px-4 py-2 hover:scale-105" aria-label="Quitar una {{ product.selected_or_first_available_variant.title }}">
+            {% render 'icon-minus', class: 'w-3' %}
+          </button> 
+          <input type="number" name="quantity" min="1" value="1" form="Form-{{ product.selected_or_first_available_variant.id }}" x-ref="quantity_info" class="text-center w-[60px] focus:border-transparent focus:outline-none py-2">
+          <button @click="up" class="px-4 py-2 hover:scale-105" aria-label="Quitar una {{ product.selected_or_first_available_variant.title }}">
+            {% render 'icon-plus', class: 'w-3' %}
+          </button>
+        </div>
+
+        <div class="block mb-10">
+          <button type="button" name="add" form="Form-{{ product.selected_or_first_available_variant.id }}" @click="addToCart()" class="btn-black">
+            Agregar al Carro
+          </button>
+        </div>
+
+        <div class="description text-base tracking-[1.5px] mb-6">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "gift-card-product",
+  "settings": []
+}
+{% endschema %}

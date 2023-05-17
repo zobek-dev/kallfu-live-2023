@@ -1,0 +1,366 @@
+{
+  "sections": {
+    "banner": {
+      "type": "banner-slider",
+      "blocks": {
+        "0280c2ac-689e-48be-9dff-59e84b5af47a": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/Mesa_de_trabajo_30_36561c66-530d-45bf-839d-5dc61de5da92.png",
+            "image_tablet": "shopify:\/\/shop_images\/Mesa_de_trabajo_32.png",
+            "image_mobile": "shopify:\/\/shop_images\/Mesa_de_trabajo_33.png",
+            "url": "shopify:\/\/collections\/portavinilos",
+            "alt_text": ""
+          }
+        },
+        "1f7fbf2c-083b-490a-a8d4-850c64efc313": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/banner_kallfu_noviembre_Mesa_de_trabajo_1.png",
+            "image_tablet": "shopify:\/\/shop_images\/banner_kallfu_noviembre-02.png",
+            "image_mobile": "shopify:\/\/shop_images\/banner_kallfu_noviembre-03.png",
+            "url": "shopify:\/\/collections\/all",
+            "alt_text": ""
+          }
+        },
+        "199490ea-535c-4c54-95d6-2b6d29d49313": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/Mesa_de_trabajo_2_d63b971b-d6c0-461d-a1d3-3ba308cba333.jpg",
+            "image_tablet": "shopify:\/\/shop_images\/Mesa_de_trabajo_3_0c01f447-bad5-4f19-88c1-047ea33ae7ba.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/Mesa_de_trabajo_4_af0e8d94-5d88-4da4-afc3-88dc1a34d278.jpg",
+            "url": "shopify:\/\/collections\/escritorios",
+            "alt_text": ""
+          }
+        },
+        "4ad01222-c32b-42ac-84a1-4d73ea51435b": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/Mesa_de_trabajo_8.png",
+            "image_tablet": "shopify:\/\/shop_images\/Mesa_de_trabajo_9.png",
+            "image_mobile": "shopify:\/\/shop_images\/iPhone_14_Pro_1.png",
+            "url": "shopify:\/\/collections\/all",
+            "alt_text": ""
+          }
+        },
+        "f1520daa-ff6a-4094-b78a-c3744320d57e": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/Web_1920_8_26469248-3fee-4b41-8034-2bace947909b.jpg",
+            "image_tablet": "shopify:\/\/shop_images\/Mesa_de_trabajo_1_d50e5ffe-a8eb-4d38-8ffa-9cdc79750601.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/Mesa_de_trabajo_2_4d8b15e2-7f54-4794-8f55-2bf78dd10cf4.jpg",
+            "url": "shopify:\/\/collections\/plants-station",
+            "alt_text": ""
+          }
+        },
+        "e3590aa8-c5c2-4fd2-8a2e-cc30f3fd834c": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/Web_1920_7_0eb86cfa-465e-4248-a8b4-d01732af5142.jpg",
+            "image_tablet": "shopify:\/\/shop_images\/Web_1920_5_db3bc95e-b80d-4df5-b35e-4af3d60c7487.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/Web_1920_6_305d1ad2-2c9a-4c22-a6d9-9e3877620654.jpg",
+            "url": "shopify:\/\/collections\/percheros-colgadores",
+            "alt_text": ""
+          }
+        },
+        "4bf9e4d7-0384-41b3-88ae-0e3693f0be35": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/banner_kallfu_noviembre_Mesa_de_trabajo_1_copia.png",
+            "image_tablet": "shopify:\/\/shop_images\/banner_kallfu_noviembre-05.png",
+            "image_mobile": "shopify:\/\/shop_images\/banner_kallfu_noviembre-06.png",
+            "url": "shopify:\/\/pages\/empresas",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "0280c2ac-689e-48be-9dff-59e84b5af47a",
+        "1f7fbf2c-083b-490a-a8d4-850c64efc313",
+        "199490ea-535c-4c54-95d6-2b6d29d49313",
+        "4ad01222-c32b-42ac-84a1-4d73ea51435b",
+        "f1520daa-ff6a-4094-b78a-c3744320d57e",
+        "e3590aa8-c5c2-4fd2-8a2e-cc30f3fd834c",
+        "4bf9e4d7-0384-41b3-88ae-0e3693f0be35"
+      ],
+      "settings": {}
+    },
+    "icon-slider": {
+      "type": "icon-slider",
+      "blocks": {
+        "1bc465fc-698f-40e4-9841-24b4dc069120": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/atencion-calidad.png",
+            "title": "Atención de Calidad"
+          }
+        },
+        "30ffc149-661b-4158-87c7-9bb42418f9e8": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fabricacion-nacional.png",
+            "title": "Fabricación Nacional"
+          }
+        },
+        "b3ef0b5e-0f0a-41c6-baad-9bd53cbe821e": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/garantia-satisfaccion.png",
+            "title": "Garantía de satisfacción"
+          }
+        },
+        "1f6b9e1a-5e1d-43a9-bada-323ad8f0bdb9": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/despacho-express.png",
+            "title": "Despacho Express"
+          }
+        }
+      },
+      "block_order": [
+        "1bc465fc-698f-40e4-9841-24b4dc069120",
+        "30ffc149-661b-4158-87c7-9bb42418f9e8",
+        "b3ef0b5e-0f0a-41c6-baad-9bd53cbe821e",
+        "1f6b9e1a-5e1d-43a9-bada-323ad8f0bdb9"
+      ],
+      "settings": {}
+    },
+    "166483003033e9e7be": {
+      "type": "cyber-descuentos",
+      "disabled": true,
+      "blocks": {
+        "0b463677-44ac-4d4b-adbe-97ab6ed0417d": {
+          "type": "disccount",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Mesa_de_trabajo_29_e71f76d8-4d45-4450-bdba-ba7178d96fd9.jpg",
+            "link": "shopify:\/\/collections\/50-descuento"
+          }
+        },
+        "5e5b1795-7d22-4015-b776-f4ec098bec49": {
+          "type": "disccount",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Mesa_de_trabajo_28_a2a68d01-8999-4374-8083-84d329c01c76.jpg",
+            "link": "shopify:\/\/collections\/40-de-descuento"
+          }
+        },
+        "69806b41-bafd-4054-a1d6-c5cb3ccca864": {
+          "type": "disccount",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Mesa_de_trabajo_26_6cc3a2b7-c474-45a6-94de-4ced89f69b3a.jpg",
+            "link": "shopify:\/\/collections\/30-de-descuento"
+          }
+        },
+        "cf51e826-360b-44d8-8076-0c4046893687": {
+          "type": "disccount",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Mesa_de_trabajo_27_05cfa88e-6bec-4ea2-a0d5-40c873f611a6.jpg",
+            "link": "shopify:\/\/collections\/20-de-descuento"
+          }
+        },
+        "af77e6e8-452a-4d7f-acda-300c0732ba1a": {
+          "type": "disccount",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/60.png",
+            "link": "shopify:\/\/collections\/60-de-descuento"
+          }
+        }
+      },
+      "block_order": [
+        "0b463677-44ac-4d4b-adbe-97ab6ed0417d",
+        "5e5b1795-7d22-4015-b776-f4ec098bec49",
+        "69806b41-bafd-4054-a1d6-c5cb3ccca864",
+        "cf51e826-360b-44d8-8076-0c4046893687",
+        "af77e6e8-452a-4d7f-acda-300c0732ba1a"
+      ],
+      "settings": {
+        "title": ""
+      }
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "featured_collection": "frontpage"
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "2ed0d91d-3435-4adf-8825-f31241453cca": {
+          "type": "list",
+          "settings": {
+            "collection": "plants-station"
+          }
+        },
+        "6680db9b-6a17-4bf8-9a05-32544fbec4f5": {
+          "type": "list",
+          "settings": {
+            "collection": "portavinilos"
+          }
+        },
+        "cd752859-8130-4d86-82a8-313da138ee35": {
+          "type": "list",
+          "settings": {
+            "collection": "mesas-de-centro"
+          }
+        },
+        "de241c49-4628-42c9-af1c-9357eff709df": {
+          "type": "list",
+          "settings": {
+            "collection": "escritorios"
+          }
+        },
+        "9f246963-5967-467a-a07e-3e8113efd95b": {
+          "type": "list",
+          "settings": {
+            "collection": "percheros-colgadores"
+          }
+        }
+      },
+      "block_order": [
+        "2ed0d91d-3435-4adf-8825-f31241453cca",
+        "6680db9b-6a17-4bf8-9a05-32544fbec4f5",
+        "cd752859-8130-4d86-82a8-313da138ee35",
+        "de241c49-4628-42c9-af1c-9357eff709df",
+        "9f246963-5967-467a-a07e-3e8113efd95b"
+      ],
+      "settings": {}
+    },
+    "home-text": {
+      "type": "home-text",
+      "settings": {
+        "title": "<p>Somos una empresa nacional con <strong>diseños simples y de estilo industrial<\/strong>, fabricados con materiales durareros y de calidad.<\/p>",
+        "content": "<p>Nos apasiona fabricar muebles de alta calidad, enfocados en mantener sobre todo la funcionalidad. considerando la infraestructura, ambientes y el aporte estético que brindan nuestros diseños a cada espacio. <\/p>"
+      }
+    },
+    "home-medida": {
+      "type": "home-medida",
+      "disabled": true,
+      "settings": {}
+    },
+    "16591118342c615166": {
+      "type": "servicio-personalizado",
+      "disabled": true,
+      "settings": {
+        "url": "https:\/\/api.whatsapp.com\/send\/?phone=56979532074&text=Hola%2C+quiero+saber+mas+sobre+los+descuentos+del+CYBER&app_absent=0",
+        "imagen": "shopify:\/\/shop_images\/img-servicioamedida-home.png"
+      }
+    },
+    "165400462101f388bd": {
+      "type": "empresas-section",
+      "blocks": {
+        "4ece862a-4e33-4eb8-9e87-3177524ec55e": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/lombardis.png",
+            "name": "Lombardis"
+          }
+        },
+        "24ba8d1d-8383-4336-80b6-d0f1ae88b5b3": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/wework.png",
+            "name": "wework"
+          }
+        },
+        "c36b53cf-df5e-4cbe-b0f3-cb5d7c1ce912": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/bosch.png",
+            "name": "bosch"
+          }
+        },
+        "27f7e9db-684e-4f68-893a-91c915556c3a": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/DANDO-LA-HORA.png",
+            "name": "Dando la Hora"
+          }
+        },
+        "bc444bce-ec2e-4f3c-ad58-fa612ad2e387": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/HOTEL-ATACAMA.png",
+            "name": "Atacama suites hotel"
+          }
+        },
+        "e44a33d6-9f05-4fc9-af7c-c2749f041d62": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/FUNDACION-99.png",
+            "name": "fundación noventa & nueve"
+          }
+        },
+        "9c336c6f-c1d8-4537-8453-9bd39c591349": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/PROJAZZ.png",
+            "name": "projazz"
+          }
+        },
+        "de2216a9-d43c-4d01-be42-f96c8e19aade": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/TESTARDOS-PIZZA.png",
+            "name": "testardo pizza"
+          }
+        },
+        "03e971d7-0d6e-48d3-87c9-0376c4e4d24f": {
+          "type": "slide",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/CATALOGO-ARQUITECTURA.png",
+            "name": "catálogo arquitectura"
+          }
+        }
+      },
+      "block_order": [
+        "4ece862a-4e33-4eb8-9e87-3177524ec55e",
+        "24ba8d1d-8383-4336-80b6-d0f1ae88b5b3",
+        "c36b53cf-df5e-4cbe-b0f3-cb5d7c1ce912",
+        "27f7e9db-684e-4f68-893a-91c915556c3a",
+        "bc444bce-ec2e-4f3c-ad58-fa612ad2e387",
+        "e44a33d6-9f05-4fc9-af7c-c2749f041d62",
+        "9c336c6f-c1d8-4537-8453-9bd39c591349",
+        "de2216a9-d43c-4d01-be42-f96c8e19aade",
+        "03e971d7-0d6e-48d3-87c9-0376c4e4d24f"
+      ],
+      "settings": {}
+    },
+    "1653412077f6dfb347": {
+      "type": "app",
+      "blocks": {
+        "cfa5c91e-c9d5-4707-8731-a5524ec34e4d": {
+          "type": "shopify:\/\/apps\/loox-product-reviews-photos\/blocks\/loox-agg-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "hide_thumbnails": false,
+            "product_handle": "",
+            "aggregated": true,
+            "data-limit": 6,
+            "maxwidth": 1400
+          }
+        }
+      },
+      "block_order": [
+        "cfa5c91e-c9d5-4707-8731-a5524ec34e4d"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "banner",
+    "icon-slider",
+    "166483003033e9e7be",
+    "featured-products",
+    "featured-collections",
+    "home-text",
+    "home-medida",
+    "16591118342c615166",
+    "165400462101f388bd",
+    "1653412077f6dfb347"
+  ]
+}

@@ -1,0 +1,66 @@
+<div class="page-width">
+  <div class="mb-8 pb-4">
+    <h2 class="uppercase text-xl tracking-[2.5px] text-center mb-4">
+      {{ section.settings.title | escape }}
+    </h2>
+    <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4" role="list">
+      {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        <li>
+          <a href="{{ block.settings.link }}" class="trasition-opacity duration-500 ease-in-out hover:opacity-70">
+          <img 
+            src="{{ block.settings.image | img_url: 'master'}}" 
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            loading="lazy"
+            class="aspect-square object-cover object-center"
+          >    
+          </a>   
+        </li>
+      {%- endfor -%}  
+      {%- else -%}
+        <h3 class="text-center">Inserta descuentos en la configuración</h3>
+      {%- endif -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cyber Descuentos",
+  "tag": "section",
+  "settings":[
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Escribe el titulo para la sección",
+      "default":"Descuentos Cyber"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "disccount",
+      "name": "Descuento Cyber",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen del descuento"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link de la colección"
+        }
+      ]
+    }
+  ],
+  "presets":[
+      {
+          "name": "Cyber Descuentos",
+          "category": "list"
+      }
+  ] 
+        
+}
+{% endschema %}

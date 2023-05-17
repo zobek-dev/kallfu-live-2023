@@ -1,0 +1,47 @@
+<div class="page-width">
+    <div class="grid md:grid-cols-2 grid-cols-1 gap-8 my-12 items-center">
+        <div class="grid-cols-1">
+            <h2 class="text-2xl uppercase tracking-[4px] font-bold mb-8">Servicio personalizado y corporativos</h2>
+            <p class="tracking-[1.5px] mb-8">
+                Si requieres de un servicio más personalizado,  nuestro equipo te visita para aclarar todas tus dudas, tomar medidas y asesorarte  sobre el producto que quieres realizar.<br>
+                En kallfü también realizamos trabajos corporativos para empresas y/o eventos espaciales que requieran un producto a medida.
+            </p>
+            <div class="flex gap-y-3 md:gap-x-3 flex-col md:flex-row">
+                <a href="{{ section.settings.url }}" class="block uppercase bg-black text-white tracking-[4px] w-full md:w-[250px] px-4 py-2 text-center text-sm" target="_blank" rel="noopener noreferrer">
+                    Agenda tu visita
+                </a>
+                <a href="/pages/a-medida" class="block uppercase bg-white text-black  border border-black tracking-[4px] w-full md:w-[250px] px-4 py-2 text-center text-sm">
+                    Ver Proyectos
+                </a>
+            </div>
+        </div>
+        <div class="grid-cols-1 flex justify-center items-center">
+           <img src="{{ section.settings.imagen | img_url: '800x' }}" alt="{{ section.settings.visita_imagen }}" width="600" height="auto" loading="lazy" class="object-cover object-center">
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+    "name": "Servicio personalizado",
+    "settings": [
+        {
+            "type": "url",
+            "id": "url",
+            "label": "Link del boton"
+        },
+        {
+            "type": "image_picker",
+            "id": "imagen",
+            "label": "Imagen de la categoría"
+        }
+    ],
+    "presets":[
+        {
+            "name": "Servicio personalizado",
+            "category": "Home"
+        }
+    ]
+}
+{% endschema %}

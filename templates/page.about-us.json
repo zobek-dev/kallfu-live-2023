@@ -1,0 +1,236 @@
+{
+  "sections": {
+    "main": {
+      "type": "aboutus-template",
+      "blocks": {
+        "e9578c6f-6fd8-4480-b6da-3627e44ae368": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bellota_1.png",
+            "name": "bellota",
+            "role": "Supervisora"
+          }
+        },
+        "ed3b55cf-67b0-4b4e-8228-1b6d972764b6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/juan.png",
+            "name": "Juan V",
+            "role": "Fundador"
+          }
+        },
+        "495b6053-99d0-4e2c-b725-6c85e868aefb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/cami.png",
+            "name": "Camila C",
+            "role": "Arquitecta"
+          }
+        },
+        "927e1510-a9b7-4299-a97f-6e20c0f539f9": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/axel.png",
+            "name": "Axel H",
+            "role": "Jefe taller"
+          }
+        },
+        "4d6565a6-2cdc-4ea3-8846-bd005956b046": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Jose.jpg",
+            "name": "José V",
+            "role": "Soldador"
+          }
+        },
+        "3e8c215e-9a9e-4cf1-8f1b-d277cb1f281c": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Arnaldo.jpg",
+            "name": "Arnaldo M.",
+            "role": "Soldador"
+          }
+        },
+        "ee7356c5-d7f7-403b-87b3-1ee0e297c2fd": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/6.jpg",
+            "name": "Sergio N",
+            "role": "Ayudante taller de madera"
+          }
+        },
+        "968e8fc2-d57c-4b48-a34d-0b2e2f020627": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/9.jpg",
+            "name": "Carlos C",
+            "role": "Atención al Cliente"
+          }
+        },
+        "fed12a76-075f-41be-8848-47e3f6540c0d": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/8.jpg",
+            "name": "Daniel Y",
+            "role": "Lacado y pintura"
+          }
+        },
+        "c06aecc4-21b3-4613-96f9-14b830b0d5a7": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/E_1.jpg",
+            "name": "Yhonfred B",
+            "role": "Packaging"
+          }
+        },
+        "e8d27649-5bff-44b7-bdd5-6601ccb65578": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Sin_titulo-1.jpg",
+            "name": "Carlos E.",
+            "role": "Ayudante Madera"
+          }
+        },
+        "1dee8327-e534-4a18-ba0a-fd00581b91a2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/aa.jpg",
+            "name": "Steven A.",
+            "role": "Ayudante Soldadura"
+          }
+        },
+        "f171bf69-59c5-40cf-b19c-6ff4418b0269": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Brayan.jpg",
+            "name": "Brayan A.",
+            "role": "Marketing"
+          }
+        },
+        "323298c7-adbe-41d5-9602-334dd34a492e": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Nicolas.jpg",
+            "name": "Nicolás Gómez",
+            "role": "Fotografo"
+          }
+        },
+        "4aee7a41-dc11-4def-ad37-3c11ef266d59": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/dani.png",
+            "name": "Daniela A",
+            "role": "Marketplace"
+          }
+        },
+        "b6787f4b-497c-4a6f-a9cf-794f7d050a71": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/seba.png",
+            "name": "Sebastian V",
+            "role": "Desarrollador Web"
+          }
+        },
+        "8e2dee34-279b-43ea-8264-254b75888954": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/nicole.png",
+            "name": "Nicole R",
+            "role": "Diseñadora Gráfica"
+          }
+        },
+        "7abe325b-125b-4afe-a005-7449e8229c5d": {
+          "type": "icons",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/atencion-calidad.png",
+            "title": "Atención de Calidad"
+          }
+        },
+        "67b762a1-cc6b-4b8b-984a-4b7f6336468e": {
+          "type": "icons",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fabricacion-nacional.png",
+            "title": "Fabricación Nacional"
+          }
+        },
+        "df669da5-bff5-4bec-bbc6-b24a9af88c5c": {
+          "type": "icons",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/garantia-satisfaccion.png",
+            "title": "Garantía de Satisfacción"
+          }
+        },
+        "7c1924f3-5736-4402-a176-d283ee8f4125": {
+          "type": "icons",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/despacho-express.png",
+            "title": "Despacho Express"
+          }
+        }
+      },
+      "block_order": [
+        "e9578c6f-6fd8-4480-b6da-3627e44ae368",
+        "ed3b55cf-67b0-4b4e-8228-1b6d972764b6",
+        "495b6053-99d0-4e2c-b725-6c85e868aefb",
+        "927e1510-a9b7-4299-a97f-6e20c0f539f9",
+        "4d6565a6-2cdc-4ea3-8846-bd005956b046",
+        "3e8c215e-9a9e-4cf1-8f1b-d277cb1f281c",
+        "ee7356c5-d7f7-403b-87b3-1ee0e297c2fd",
+        "968e8fc2-d57c-4b48-a34d-0b2e2f020627",
+        "fed12a76-075f-41be-8848-47e3f6540c0d",
+        "c06aecc4-21b3-4613-96f9-14b830b0d5a7",
+        "e8d27649-5bff-44b7-bdd5-6601ccb65578",
+        "1dee8327-e534-4a18-ba0a-fd00581b91a2",
+        "f171bf69-59c5-40cf-b19c-6ff4418b0269",
+        "323298c7-adbe-41d5-9602-334dd34a492e",
+        "4aee7a41-dc11-4def-ad37-3c11ef266d59",
+        "b6787f4b-497c-4a6f-a9cf-794f7d050a71",
+        "8e2dee34-279b-43ea-8264-254b75888954",
+        "7abe325b-125b-4afe-a005-7449e8229c5d",
+        "67b762a1-cc6b-4b8b-984a-4b7f6336468e",
+        "df669da5-bff5-4bec-bbc6-b24a9af88c5c",
+        "7c1924f3-5736-4402-a176-d283ee8f4125"
+      ],
+      "settings": {
+        "hero_desktop": "shopify:\/\/shop_images\/pagina-a-medida-desktop_1.png",
+        "hero_mobile": "shopify:\/\/shop_images\/pagina-a-medida-movil_2.png",
+        "title": "<p>Somos una empresa nacional con <strong>diseños simples y de estilo industrial<\/strong>, fabricados con materiales y de calidad.<\/p>",
+        "content": "<p>KALLFÜ es una empresa nacional que nace a principios del año 2020 con el fin de optimizar espacios reducidos en los que actualmente habitamos y al mismo tiempo mejorar la calidad de los productos ofrecidos por el retail.<br\/><br\/>Como objetivo principal, creamos productos funcionales que sean parte de nuestro diario vivir, que nos acompañen a mejorar nuestra calidad de vida y el diseño de nuestros espacios.<\/p>"
+      }
+    },
+    "1678816420b0d8a57e": {
+      "type": "apps",
+      "blocks": {
+        "90c72d7e-a328-4522-9ed7-caa4c6ed5b64": {
+          "type": "shopify:\/\/apps\/loox-product-reviews-photos\/blocks\/loox-carousel-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "max_width": 1920,
+            "text_color": "#000000",
+            "background_color": "#ffffff",
+            "arrows_color": "#000000",
+            "dots_color": "#000000",
+            "button_color": "#000000",
+            "show_more": true,
+            "only_photos": false,
+            "use_widget_font": true,
+            "product_handle": ""
+          }
+        }
+      },
+      "block_order": [
+        "90c72d7e-a328-4522-9ed7-caa4c6ed5b64"
+      ],
+      "settings": {}
+    },
+    "b8e5dffb-b8ca-4ba0-9e73-5be72cfeb4b5": {
+      "type": "empresas-section",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "1678816420b0d8a57e",
+    "b8e5dffb-b8ca-4ba0-9e73-5be72cfeb4b5"
+  ]
+}

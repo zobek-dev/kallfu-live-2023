@@ -1,0 +1,89 @@
+{% comment %}
+  Parameters: 
+  product_card: This received the product object,
+  class: Some particular class ouside of tailwind class
+
+{% endcomment %}
+
+{% liquid
+  assign on_sale = false
+  if product_card.compare_at_price_max > product_card.price
+    assign porcentage = product_card.compare_at_price_max | minus: product_card.price | times: 100 | divided_by: product_card.compare_at_price_max
+    assign on_sale = true
+  endif
+  assign month = 30 | times: 24 | times: 60 | times: 60
+  assign date_created = product_card.created_at | date: "%Y-%m-%d"
+  assign dead_line = "now" | date: "%s" | minus: month | date: "%Y-%m-%d"
+%}
+
+<li class="group block border border-[#121212] {{ class }}">
+  <div class="card-image__container relative overflow-hidden">
+    <a href="{{ product_card.url }}">
+      {% if on_sale %}
+        <span class="absolute right-2 top-2 bg-[#121212] text-white font-bold leading-[1] text-sm md:text-base tracking-[1.5px] p-1 md:p-2 z-[9]">
+          {{ porcentage }}% 
+          <br><span class="text-sm md:text-base mt-0">OFF.</span>
+        </span>
+      {% endif %}
+      {% if date_created > dead_line %}
+        <span class="absolute z-[9] left-2 bottom-2 bg-[#e5AB5A] text-white font-bold leading-none text-sm md:text-base tracking-[1.5px] p-1">
+          NEW
+        </span>
+      {% endif %}
+      {% unless product_card.available %}
+        <span class="absolute left-2 bottom-2 bg-[#121212] text-white font-bold leading-none text-sm md:text-base tracking-[1.5px] p-1 z-[9]">
+          OUT
+        </span>  
+      {% endunless %}
+      {%- comment -%} <div class="absolute top-2 left-2 z-[11] bg-[#121212]">
+        {% render 'icon-blackfriday', class: 'w-[88px] h-[32.8px] lg:w-[121px] lg:h-[45px]' %}
+         <div class="absolute top-2 left-2 z-[11]">
+        {% render 'icon-black', class: 'w-[88px] h-[32.8px] lg:w-[121px] lg:h-[45px]' %}
+        </div>
+      </div>  {%- endcomment -%}
+
+      <img src="{{ product_card.featured_image | img_url: '400x' }}" alt="{{ product_card.title | escape }}" loading="lazy" class="aspect-square obejct-fit object-cover transition-all duration-700 ease-in-out group-hover:invisible group-hover:opacity-0 group-hover:z-[-1] z-[8]">
+      {% if product_card.images.size > 1 %}
+       <img src="{{ product_card.images[1].src | img_url: '400x' }}" alt="{{ product_card.title |escape }}" loading="lazy" class="aspect-square obejct-fit object-cover invisible opacity-0 transition-all duration-700 ease-in-out group-hover:visible group-hover:opacity-100 group-hover:z-[8] absolute top-0 left-0 z-[-1]">
+      {% endif %} 
+    </a>
+  </div>
+  <div class="card-content p-2 md:p-4">
+    <a href="{{ product_card.url }}">
+      {% render 'shipping-color-snippet', tags: product_card.tags, size: 'text-[10px]', product_id: product_card.selected_or_first_available_variant.id %}
+      <h3 class="uppercase text-xs sm:text-sm lg:text-base tracking-[1.5px] leading-none line-clamp-1 mb-2">
+        {{ product_card.title | escape }}
+      </h3>
+      <div class="flex gap-1 items-center mb-2">
+        <span class="font-bold text-sm lg:text-lg tracking-[1.5px]">{{ product_card.price | money }}</span>
+        {% if on_sale %}
+          <s class="text-[10px] lg:text-sm">{{ product_card.compare_at_price_max | money }}</s>
+        {% endif %}  
+      </div>
+    </a>
+    <div x-data="{
+      addToCart(e){
+        e.preventDefault();
+        let formData = new FormData(this.$refs.card_product_form)
+        fetch('/cart/add.js',{
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(response => {
+            this.$dispatch('cart-updated');
+            this.$dispatch('toggle-cart');
+        })
+        .catch(error=> console.error('Error: ', error));
+      }
+    }">
+      <form action="{{ routes.cart_add_url }}" method="POST" id="Form-{{ product_card.selected_or_first_available_variant.id }}" x-ref="card_product_form">
+        <input type="hidden" name="id" value="{{ product_card.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+      </form>
+      <a name="add" role="button" @click="addToCart" form="Form-{{ product_card.selected_or_first_available_variant.id }}" class="border block border-black text-[8px] sm:text-[xs] md:text-sm tracking-[1px] text-center uppercase py-2 cursor-pointer font-bold transition-all duration-500 ease-in-out hover:bg-black hover:text-white">
+        Agregar al carrito
+      </a>
+    </div>
+  </div>
+</li>

@@ -1,0 +1,327 @@
+{{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+<style>
+    .swiper-button-next, .swiper-button-prev {
+        color:#aaa !important;
+        cursor:pointer;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .swiper-button-next:hover, .swiper-button-prev:hover{
+        opacity: 0.7;
+    }
+
+    .swiper-slide{
+        opacity: 0.5;
+    }
+
+    .swiper-slide-active{
+        opacity: 1;
+    }
+</style>
+<div class="page-width">
+    {% render 'breadcrumb' %}
+</div>
+<div class="w-full relative">
+    {% if section.settings.hero_desktop != blank %}
+    <picture>
+        <source media="(min-width:600px )" srcset="{{ section.settings.hero_desktop | img_url: 'master' }}">
+        <source media="(min-width:150px )" srcset="{{ section.settings.hero_mobile | img_url: 'master' }}">
+        <img src="{{ section.settings.hero_desktop | img_url: 'master' }}" alt="{{ section.settings.hero_desktop.alt }}" class="w-full">
+    </picture>     
+    {% endif %}
+    <div class="absolute flex justify-center items-center top-0 left-0 w-full h-full p-4">
+        <p class="text-white text-center font-bold tracking-[2.5px] uppercase text-[1.2rem] md:text-[1.75rem]">Diseñamos & fabricamos muebles  justo a la<br>medida para tus espacios favoritos</p>
+    </div> 
+</div>
+<div class="page-width">
+    <div class="text-center">
+        <div class="flex flex-col items-center">
+            {% render 'icon-manos', class: 'block mx-0 w-16 h-16 mt-6 mb-4' %}
+            <h1 class="text-xl tracking-[2.5px]">TENEMOS LA SOLUCIÓN</h1>
+            <p class="tracking-[1.5px] text-base md:px-[10%] py-4">En KALLFÜ trabajamos día a día para brindar un servicio excepcional y garantizar la satisfacción de cada uno de nuestros clientes , es por eso que también realizamos muebles a medidas. ¿ Te gusta uno de nuestros muebles , pero no es de la medida indicada para el espacio de tu hogar ? aquí tendrás la solución , solo debes seguir los siguientes pasos.</p>
+            <p class="md:px-[20%] text-[#00abdd] tracking-[1.5px] mb-4 font-bold">
+                IMPORTANTE : EL PRODUCTO DEBE ESTAR CONSIDERADO DENTRO DE LA LÍNEA 
+                DE PRODUCTOS QUE FABRICAMOS.
+            </p>       
+        </div>
+    </div>
+    <ul class="grid grid-cols-1 text-center sm:text-left sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-8">
+        <li class="flex flex-col items-center gap-2">
+            {% render 'icon-medida', class: 'w-[6rem] h-[6rem]' %}
+            <p class="text-sm tracking-[1.5px]">
+                Mide bien el espacio en donde ubicarás tu producto a medida, así evitaremos cualquier problema con el resultado final de tu mueble a medidad. 
+            </p>
+        </li>
+        <li class="flex flex-col items-center gap-2">
+            {% render 'icon-ampolleta', class: 'w-[6rem] h-[6rem]' %}
+            <p class="text-sm tracking-[1.5px]">
+                Completa el formulario o bien contáctanos directamente por whatsapp y cuentános lo que tienes en mente para realizar una cotización detallada. 
+            </p>    
+        </li>
+        <li class="flex flex-col items-center gap-2">
+            {% render 'icon-fabricacion', class: 'w-[6rem] h-[6rem]' %}
+            <p class="text-sm tracking-[1.5px]">
+                Para comenzar la fabricación de tu mueble a medida, se debe abonar el total del valor. 
+            </p>    
+        </li>
+        <li class="flex flex-col items-center gap-2">
+            {% render 'despacho-icon', class: 'w-[6rem] h-[6rem]' %}
+            <p class="text-sm tracking-[1.5px]">
+                El plazo de entrega es de 30 días corridos a partir de la confirmación de la cotización previa y pago.
+            </p>    
+        </li>
+    </ul>
+    <div class="flex flex-col md:flex-row gap-4 justify-center items-center my-12">
+        <div class="text-center md:text-left text-2xl p-6 font-semibold tracking-[2.5px] border-b border-b-[#121212] md:border-b-transparent md:border-r md:border-r-[#121212]">
+            ¿ TIENES<br> ALGUNA DUDA ?
+        </div>
+        <div class="text-center md:text-left px-6 tracking-[1.5px]">
+            Envíanos un<br>
+            mensaje vía whatsapp<br>
+            al <a href="https://api.whatsapp.com/send?phone=56979532074&text=Hola%20kallfu,%20he%20visto%20tus%20productos%20y%20estoy%20interesado%20en%20tener%20mas%20informaci%C3%B3n%20al%20respecto" target="_blank" class="underline underline-offset-2">+56 979532074</a>.         
+        </div> 
+        <div class="text-center md:text-left px-6 tracking-[1.5px]">
+            Llámanos al <br>
+            <a href="tel:+56264692338" target="_blank" class="underline underline-offset-2">+56 2 6469 2338</a>
+        </div>
+        <div class="text-center md:text-left px-6 tracking-[1.5px]">
+            Escríbenos a <br>
+            <a href="mailto:hola@kallfu.pro" class="underline underline-offset-2">hola@kallfu.pro</a>   
+        </div>
+    </div>
+    <div class="w-full bg-[#ddd] py-12 px-4 mb-8" id="Form">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl tracking-[2.5px] font-bold">COTIZA AQUÍ</h2>
+            <p class="tracking-[1.5px]">Nuestro equipo se contactará a la brevedad contigo.</p>
+        </div>
+        {% form 'contact' %}      
+        <div class="{% if form.posted_successfully? %}hidden{% else %}grid{% endif %} grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="col-span-1">
+                <div class="md:px-10 py-2">
+                    <label for="full-name" class="block w-full tracking-[1.5px] text-base pb-2">
+                        NOMBRE COMPLETO :
+                    </label>
+                    <input type="text" id="full-name" name="contact[nombre_completo]" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                </div>
+                <div class="md:px-10 py-2">
+                    <label for="email" class="block w-full tracking-[1.5px] text-base pb-2">
+                        CORREO ELECTRÓNICO :
+                    </label>
+                    <input type="text" id="email" name="contact[email]" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                </div>
+                <div class="md:px-10 py-2">
+                    <label for="comuna" class="block w-full tracking-[1.5px] text-base pb-2">
+                        COMUNA :
+                    </label>
+                    {% comment %}
+                    <input type="text" id="comuna" name="contact[comuna]" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                    {% endcomment %}
+                    <select name="contact[comuna]" id="comuna" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                        <option disabled selected>Selecciona una comuna</option>
+                        <option value="Santiago">Santiago</option>
+                        <option value="Cerrillos">Cerrillos</option>
+                        <option value="Cerro Navia">Cerro Navia</option>
+                        <option value="Conchalí">Conchalí</option>
+                        <option value="El Bosque">El Bosque</option>
+                        <option value="Estación Central">Estación Central</option>
+                        <option value="Huechuraba">Huechuraba</option>
+                        <option value="Independencia">Independencia</option>
+                        <option value="La Cisterna">La Cisterna</option>
+                        <option value="La Florida">La Florida</option>
+                        <option value="La Granja">La Granja</option>
+                        <option value="La Pintana">La Pintana</option>
+                        <option value="La Reina">La Reina</option>
+                        <option value="Las Condes">Las Condes</option>
+                        <option value="Lo Barnechea">Lo Barnechea</option>
+                        <option value="Lo Espejo">Lo Espejo</option>
+                        <option value="Lo Prado">Lo Prado</option>
+                        <option value="Macul">Macul</option>
+                        <option value="Maipú">Maipú</option>
+                        <option value="Ñuñoa">Ñuñoa</option>
+                        <option value="Pedro Aguirre Cerda">Pedro Aguirre Cerda</option>
+                        <option value="Peñalolén">Peñalolén</option>
+                        <option value="Providencia">Providencia</option>
+                        <option value="Pudahuel">Pudahuel</option>
+                        <option value="Quilicura">Quilicura</option>
+                        <option value="Quinta Normal">Quinta Normal</option>
+                        <option value="Recoleta">Recoleta</option>
+                        <option value="Renca">Renca</option>
+                        <option value="Joaquín">Joaquín</option>
+                        <option value="San Miguel">San Miguel</option>
+                        <option value="San Ramón">San Ramón</option>
+                        <option value="Vitacura">Vitacura</option>
+                        <option value="Puente Alto">Puente Alto</option>
+                        <option value="Pirque">Pirque</option>
+                        <option value="San José de Maipú">San José de Maipú</option>
+                        <option value="Colina">Colina</option>
+                        <option value="Lampa">Lampa</option>
+                        <option value="Tiltil">Tiltil</option>
+                        <option value="San Bernardo">San Bernardo</option>
+                        <option value="Buin">Buin</option>
+                        <option value="Calera de Tango">Calera de Tango</option>
+                        <option value="Paine">Paine</option>
+                        <option value="Melipilla">Melipilla</option>
+                        <option value="Alhué">Alhué</option>
+                        <option value="Curacaví">Curacaví</option>
+                        <option value="María Pinto">María Pinto</option>
+                        <option value="San Pedro">San Pedro</option>
+                        <option value="Talagante">Talagante</option>
+                        <option value="El Monte">El Monte</option>
+                        <option value="Isla de Maipo">Isla de Maipo</option>
+                        <option value="Padre Hurtado">Padre Hurtado</option>
+                        <option value="Peñaflor">Peñaflor</option>
+                    </select>
+                </div>
+                <div class="md:px-10 py-2">
+                    <label for="telefono" class="block w-full tracking-[1.5px] text-base pb-2">
+                        TELÉFONO :
+                    </label>
+                    <input type="text" id="telefono" name="contact[telefono]" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                </div>
+            </div>
+            <div class="col-span-1 flex flex-col gap-6 lg:pr-6">
+              <div>
+                  <label for="body" class="block w-full tracking-[1.5px] text-base pb-2">DETALLE DE PEDIDO :</label>
+                  <textarea name="contact[body]" id="body" rows="10" class="block border border-[#121212] outline-[#121212] bg-transparent"></textarea>
+              </div>
+              <button type="submit" class="self-end bg-[#121212] text-white tracking-[1.5px] font-bold px-2 py-2">
+                ENVIAR
+              </button>  
+            </div>
+        </div>
+        <div class="{% if form.posted_successfully? %}flex{% else %}hidden{% endif %} flex-col justify-center items items-center h-[70vh] w-full text-center">
+            <h2 class="text-2xl font-bold tracking-[1.5px] my-6">Gracias. Te contactaremos<br> dentro de las próximas 48 hrs.</h2>
+            <p class="text-sm tracking-[1.5px] mb-2">Si buscas una respuesta inmediata</p>
+            <a href="https://api.whatsapp.com/send/?phone=56979532074&text=Hola%2C+quiero+saber+mas+sobre+los+descuentos+del+CYBER&app_absent=0" class="block uppercase py-2 px-4 border border-[#121212] tracking-[1.5px] mx-0 w-[280px]" target="_blank">Escribenos aquí</a>
+            <p class="text-sm tracking-[1.5px] my-2">o continua viendo</p>
+            <a href="/collections/all" class="block uppercase py-2 px-4 border border-[#121212] tracking-[1.5px] mx-0 w-[280px]">Nuestros productos</a>
+        </div>
+        {% endform %}
+    </div>
+
+    <div class="grid md:grid-cols-2 grid-cols-1 gap-8 my-12 items-center">
+        <div class="grid-cols-1">
+            <h2 class="text-2xl uppercase tracking-[4px] font-bold mb-8">Servicio personalizado y corporativos</h2>
+            <p class="tracking-[1.5px] mb-8">
+                Si requieres de un servicio más personalizado,  nuestro equipo te visita para aclarar todas tus dudas, tomar medidas y asesorarte  sobre el producto que quieres realizar.<br>
+                En kallfü también realizamos trabajos corporativos para empresas y/o eventos espaciales que requieran un producto a medida.
+            </p>
+            <a href="{{ section.settings.visita_url }}" class="block uppercase bg-black text-white tracking-[4px] w-[280px] px-4 py-2 text-center font-bold" target="_blank" rel="noopener noreferrer">
+                Agenda tu visita
+            </a>
+        </div>
+        <div class="grid-cols-1 flex justify-center items-center">
+           <img src="{{ section.settings.visita_imagen | img_url: '800x' }}" alt="{{ section.settings.visita_imagen }}" width="600" height="auto" loading="lazy" class="object-cover object-center">
+        </div>
+    </div>
+
+    <h2 class="text-2xl uppercase tracking-[4px] font-bold mb-8 text-center">
+      MIRA NUESTRO TRABAJO 
+    </h2>
+    <div class="gallery mb-[70px]">  
+        <div class="swiper-container relative overflow-hidden mb-[20px]" id="gallery">
+            <ul class="swiper-wrapper">
+                {% for block in section.blocks %}
+                {% assign slide = block.settings %}
+                    <li class="swiper-slide">
+                        <img src="{{ slide.image | img_url: 'master' }}" alt="{{ slide.alt_text }}" loading="lazy" class="aspect-square sm:aspect-video object-contain object-center w-full"> 
+                    </li>          
+                {% endfor %} 
+            </ul>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>  
+        <div class="swiper-container relative overflow-hidden mt-[10px]" id="thumbs">
+            <ul class="swiper-wrapper">
+                 {% for block in section.blocks %}
+                 {% assign slide_thumb = block.settings %}
+                    <li class="swiper-slide border border-[#121212] cursor-pointer w-[200px]">
+                       <img src="{{ slide_thumb.image | img_url: '200x' }}" alt="{{ slide.alt_text }}" loading="lazy" class="aspect-square object-cover object-center">
+                    </li>     
+                 {% endfor %}
+            </ul>
+        </div>
+    </div> 
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', ()=> {
+        let elemCount = document.querySelector('#gallery > ul').childElementCount;
+        const gallery = new Swiper('#gallery', {
+            slidesPerView: 1,
+            loop: true,
+            spaceBetween: 10,
+            centeredSlides: true,
+            loopedSlides: elemCount, //スライドの枚数と同じ値を指定 tienes que encontrar fijar el numero de elemento en el slide
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        });
+        const thumbs = new Swiper('#thumbs', {
+            slidesPerView: 7,
+            slideToClickedSlide: true,
+            centeredSlides: true,
+            spaceBetween: 10,
+            loopedSlides: elemCount,
+            loop: true,
+            breakpoints:{
+                150: {
+                    slidesPerView: 5 
+                },
+                768:{
+                    slidesPerView: 7
+                }
+            }
+        });
+
+        gallery.controller.control = thumbs;
+        thumbs.controller.control = gallery;
+    })  
+</script>
+
+{% schema %}
+{
+    "name": "Formulario a medida",
+    "settings":[
+        {
+            "type": "image_picker",
+            "id": "hero_desktop",
+            "label": "Imagen de hero en desktop"
+        },
+        {
+            "type": "image_picker",
+            "id": "hero_mobile",
+            "label": "Imagen de hero en mobile"
+        },
+        {
+            "type": "url",
+            "id": "visita_url",
+            "label": "Link para agenda tu visita"
+        },
+        {
+            "type": "image_picker",
+            "id": "visita_imagen",
+            "label": "Imagen para la visita."
+        }
+    ],
+    "blocks": [
+        {
+            "name": "Nuestro trabajo",
+            "type": "slide",
+            "settings":[
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Inserta una foto trabajo"
+                },
+                {
+                    "type": "text",
+                    "id": "alt_text",
+                    "label": "Texto alternativo para el trabajo"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

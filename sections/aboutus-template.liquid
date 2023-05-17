@@ -1,0 +1,267 @@
+<div>
+  <div class="relative mb-8">
+    {% if section.settings.hero_desktop != blank %}
+      <picture>
+        <source media="(min-width: 800px)" srcset="{{ section.settings.hero_desktop | img_url: 'master' }}">
+        <source media="(min-width: 150px)" srcset="{{ section.settings.hero_mobile | img_url: 'master' }}">
+        <img
+          src="{{ section.settings.hero_desktop | img_url: 'master' }}"
+          alt="somos kallfü"
+          class="w-full"
+          loading="lazy">
+      </picture>
+    {% endif %}
+    <div class="absolute top-0 left-0 text-white flex flex-col justify-center items-center w-full h-full">
+      <h1 class="text-center">
+        <span class="uppercase tracking-[2.5px] font-bold text-2xl md:text-4xl">Somos</span><br>
+        <span class="uppercase tracking-[2.5px] font-bold text-6xl md:text-8xl">KALLFÜ</span><br>
+        <span class="uppercase tracking-[2.5px] font-bold text-2xl md:text-4xl">handmade</span>
+      </h1>
+    </div>
+  </div>
+  <div class="page-width">
+    <h2 class="font-semibold tracking-[2.5px] text-xl md:text-2xl text-center mb-12 rich-title uppercase">
+      {{ section.settings.title }}
+    </h2>
+  </div>
+  <div class="pl-[10%] md:pl-[20%] mb-8">
+    <div class="w-full">
+      <img src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/1_58a2bc04-aaa2-450d-82be-6ef3e143ce75.png?v=1653517063" alt="taller">
+    </div>
+    <div class="pr-[5%] md:pr-[30%] pt-8">
+      {% render 'icon-manos', class: 'w-12 h-12' %}
+      <h2 class="text-xl md:text-2xl uppercase tracking-[4px] pt-4 pb-6 font-bold">
+        Nuestra
+        <span class="text-[#00abdd]">Historia</span>
+      </h2>
+      <div class="tracking-[1.5px] rich-content">
+        {{ section.settings.content }}
+      </div>
+    </div>
+  </div>
+  <div class="page-width">
+    <h2 class="font-semibold tracking-[2.5px] text-xl md:text-2xl text-center">
+      TRABAJAMOS DIARIAMENTE PARA ENTREGAR LA MEJOR ATENCIÓN Y GARANTIZAR LA SATISFACCIÓN DE NUESTROS CLIENTES.
+    </h2>
+  </div>
+  <div class="page-width" x-data="{
+                    skip:1,
+                    prev(){
+                      this.to((current, offset) => current - (offset * this.skip));
+                    },
+                    next(){
+                      this.to((current, offset) => current + (offset * this.skip));
+                    },
+                    to(strategy){
+                      let slider = this.$refs.icon_slider;
+                      let current = slider.scrollLeft;
+                      let offset = slider.firstElementChild.getBoundingClientRect().width;
+                      slider.scrollTo({ left: strategy(current, offset), behavior:'smooth' });
+                    },
+                    focusableWhenVisible:{
+                      'x-intersect:enter'(){
+                        this.$el.removeAttribute('tabindex');
+                      },
+                      'x-intesect:leave'(){
+                        this.$el.setAttribute('tabindex', '-1');
+                      },
+                    }
+                  }">
+    <div class="py-6 relative">
+      <ul class="flex overflow-x-scroll snap-x snap-mandatory no-scrollbar" x-ref="icon_slider">
+        {% for block in section.blocks %}
+          {% if block.type == 'icons' %}
+            <li class="flex-shrink-0 w-[335px] flex flex-col items-center space-x-3 snap-start">
+              <img
+                src="{{ block.settings.image | image_url: width: 45 }}"
+                alt="{{ block.settings.title | escape }}"
+                width="45"
+                height="45"
+                class="aspect-square object-center object-contain"
+                loading="lazy">
+              <span class="text-sm tracking-[1.5px] uppercase block mt-2">
+                {{ block.settings.title | escape }}
+              </span>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+      </ul>
+      <button class="absolute block sm:hidden top-1/2 left-0 -translate-y-1/2" @click="prev">
+        {% render 'icon-arrow-right', class: 'W-8 h-8 rotate-180' %}
+        <span class="sr-only">Anterior</span>
+      </button>
+      <button class="absolute block sm:hidden top-1/2 right-0 -translate-y-1/2" @click="next">
+        {% render 'icon-arrow-right', class: 'W-8 h-8' %}
+        <div class="sr-only">Siguiente</div>
+      </button>
+    </div>
+  </div>
+  <div>
+
+    <div class="pr-[5%]">
+      {% comment %}
+      <video 
+      src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/EDIT_Cuadrado.mp4?v=1633096637" 
+      autoplay 
+      muted
+      playsinline 
+      loop></video>
+      {% endcomment %}
+      <img
+        src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/2_b9fa1ce6-dd8f-4444-93de-2c88bee55945.png?v=1653517074"
+        alt="valores kallfu"
+        loading="lazy">
+    </div>
+
+  </div>
+  <div class="page-width">
+    <p class="text-left text-xl tracking-[1.5px] font-bold my-8 md:pr-[35%]">
+      FABRICAMOS & DESPACHAMOS NUESTROS PRODUCTOS, PREOCUPÁNDONOS DE CADA DETALLE EN SU PROCESO  DE FABRICACIÓN Y LLEGUE EN PERFECTAS CONDICIONES A TU HOGAR.
+    </p>
+  </div>
+  <div class="page-width">
+    <div class="valores">
+      <div class="valores-text">
+        <h2 class="font-semibold text-xl tracking-[2.5px] mb-4">VALORES
+          <span class="text-[#00abdd]">KALLFÜ</span>
+        </h2>
+        <p class="tracking-[1.5px]">
+          Uno de los conceptos que nos inspira e impulsa a seguir expandiendo tanto nuestra variedad de productos como la línea de estos, es fabricar muebles basados en un diseño democrático, con esto apuntamos a un diseño accesible que logre abarcar una mayor cantidad de personas, considerando la forma, calidad, funcionalidad, sostenibilidad y mantener un equilibrio en la relación calidad y precio. Como equipo también buscamos brindar una excelente atención a cada uno de nuestros clientes, lo cual ha sido reconocido por cada persona que ha adquirido alguno de nuestros productos.
+        </p>
+      </div>
+      <div class="w-full">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/3.png?v=1653691410"
+          alt="valores kallfu"
+          loading="lazy">
+      </div>
+    </div>
+  </dv>
+  <div class="page-width" x-data="{
+                    skip:1,
+                    prev(){
+                      this.to((current, offset) => current - (offset * this.skip));
+                    },
+                    next(){
+                      this.to((current, offset) => current + (offset * this.skip));
+                    },
+                    to(strategy){
+                      let slider = this.$refs.member_slider;
+                      let current = slider.scrollLeft;
+                      let offset = slider.firstElementChild.getBoundingClientRect().width;
+                      slider.scrollTo({ left: strategy(current, offset), behavior:'smooth' });
+                    },
+                    focusableWhenVisible:{
+                      'x-intersect:enter'(){
+                        this.$el.removeAttribute('tabindex');
+                      },
+                      'x-intesect:leave'(){
+                        this.$el.setAttribute('tabindex', '-1');
+                      },
+                    }    
+                  }">
+    <h2 class="tracking-[2.5px] text-base md:text-xl text-center font-semibold mb-4">EQUIPO
+      <span class="text-[#00abdd]">KALLFÜ</span>
+    </h2>
+    <div class="relative mb-12">
+      <ul class="flex overflow-x-scroll snap-x snap-mandatory md:grid  md:grid-cols-2 lg:grid-cols-3  gap-4 md:no-scrollbar" x-ref="member_slider">
+        {% for block in section.blocks %}
+          {% if block.type == 'slide' %}
+            {% assign member = block.settings %}
+            <li class="border flex-shrink-0 w-full md:col-span-1 p-4 snap-start">
+              {% if member.image != blank %}
+                <div class="overflow-hidden w-full rounded-[50%]">
+                  <img
+                    src="{{ member.image | img_url: '500x' }}"
+                    alt="{{ member.name }}"
+                    loading="lazy"
+                    width="{{ member.image.width }}"
+                    height="{{ member.image.width }}"
+                    class="object-cover object-center w-full">
+                </div>
+              {% endif %}
+              {% if member.name != blank %}
+                <h3 class="text-center capitalize tracking-[1.5px] text-2xl py-2">
+                  {{ member.name }}
+                </h3>
+              {% endif %}
+              {% if member.role != blank %}
+                <p class="uppercase text-center text-base tracking-[1.5px] font-bold">{{ member.role }}</p>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <button class="block md:hidden absolute top-1/2 left-0 -translate-y-1/2 bg-gray-400/20 text-white" @click="prev">
+        {% render 'icon-arrow-right', class: 'w-12 h-12 rotate-180' %}
+        <span class="sr-only">Anterior</span>
+      </button>
+      <button class="block md:hidden absolute top-1/2 right-0 -translate-y-1/2 bg-gray-400/20 text-white" @click="next">
+        {% render 'icon-arrow-right', class: 'w-12 h-12' %}
+        <span class="sr-only">Siguiente</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Nosotros",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "hero_desktop",
+        "label": "Imagen para el hero en desktop"
+      }, {
+        "type": "image_picker",
+        "id": "hero_mobile",
+        "label": "Imagen para el hero en mobile"
+      }, {
+        "type": "richtext",
+        "id": "title",
+        "label": "Insertar el título"
+      }, {
+        "type": "richtext",
+        "id": "content",
+        "label": "Inserta cotenido"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Equipo Kallfu",
+        "type": "slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Agregar la imagen de un miembro"
+          }, {
+            "type": "text",
+            "id": "name",
+            "label": "Nombre del miembro del equipo"
+          }, {
+            "type": "text",
+            "id": "role",
+            "label": "Rol del miembro del equipo"
+          }
+        ]
+      }, {
+        "name": "Icons",
+        "type": "icons",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Insertar iconos"
+          }, {
+            "type": "text",
+            "id": "title",
+            "label": "Ingresar título"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

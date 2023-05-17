@@ -1,0 +1,84 @@
+
+<div 
+x-data="{swiper: null}" 
+x-init="swiper = new Swiper($refs.container, {
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+    },
+    loop:true,
+    autoplay:true
+})">
+    <div class="swiper" x-ref="container">
+        <ul class="swiper-wrapper">
+            {% for block in section.blocks %}
+            {% assign item = block.settings %}
+            <li class="swiper-slide">
+                {% if item.url != blank %}
+                <a href="{{ item.url }}">   
+                {% endif %} 
+                    <picture class="w-full">
+                        <source media="(min-width: 799px)" srcset="{{ item.image_desktop | img_url: 'master' }}">
+                        <source media="(min-width: 450px)" srcset="{{ item.image_tablet | img_url: '800x' }}">
+                        <source media="(min-width: 150px)" srcset="{{ item.image_mobile | img_url: '500x' }}">
+                        <img src="{{ item.image_desktop | img_url: 'master' }}" alt="{{ item.alt_text }}" laading="lazy" class="w-full">
+                    </picture>
+                {% if item.url != blank %}
+                </a>
+                {% endif %}  
+            </li>
+            {% endfor %}
+        </ul>
+          <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+    
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev hidden md:block"></div>
+        <div class="swiper-button-next hidden md:block"></div>
+    </div> 
+</div>
+
+
+{% schema %}
+{
+    "name":"carousel",
+    "max_blocks":15,
+    "blocks":[
+        {
+            "name": "Slide",
+            "type": "slide",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image_desktop",
+                    "label": "Imagen en Escritorio"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_tablet",
+                    "label": "Imagen en Tablet"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_mobile",
+                    "label": "Imagen en Mobile"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Link para slide"
+                },
+                {
+                    "type": "text",
+                    "id": "alt_text",
+                    "label": "Texto alternativo"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

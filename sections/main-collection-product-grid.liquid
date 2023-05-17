@@ -1,0 +1,270 @@
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+
+{% comment %} Use string splitting to pull the value from content_for_header and apply some string clean up {% endcomment %}
+{%- assign pageUrl = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last |
+   replace:'\/','/' | 
+   replace:'%20',' ' | 
+   replace:'\u0026','&'
+-%}
+
+{%- assign pageQuerystring = pageUrl | split: '?' | last -%}
+
+<div class="section-{{ section.id }}-padding" id="ProductContainer" x-data> 
+  <div>
+    {%- paginate collection.products by 12 -%}
+        <div class="page-width">  
+          {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+          <!--crear una fila para los current filters-->
+          <div class="flex justify-between items-center py-6">
+            <div class="hidden md:block active-filters" id="ActiveFilters">
+              <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear bg-[#767676] text-white py-2 px-4 font-semibold rounded-full text-sm  hover:opacity-[0.7]">Limpiar Filtros</a>
+              {%- for filter in collection.filters -%}
+                {%- if filter.type == "price_range" -%}
+                  {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                    <a class="active-filters__remove-filter bg-[#d7d7d7] text-white py-2 px-4 font-semibold rounded-full text-sm  inline-flex space-x-2 items-center hover:opacity-[0.7]" href="{{ filter.url_to_remove }}">
+                      {%- assign min_value = filter.min_value.value | default: 0 -%}
+                      {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                      <span>{{ min_value | money }} - {{ max_value | money }}</span>
+                      {% render 'icon-close', class: 'w-3'%}
+                    </a>
+                  {%- endif -%}
+                {%- else -%}
+                  {%- for filter_value in filter.active_values -%}
+                    <a class="active-filters__remove-filter bg-[#d7d7d7] text-white py-2 px-4 font-semibold rounded-full text-sm inline-flex space-x-2 items-center hover:opacity-[0.7]" href="{{ filter_value.url_to_remove }}">
+                      <span>{{ filter.label }}: {{ filter_value.label }}</span>
+                      {% render 'icon-close', class: 'w-3' %}
+                    </a>
+                  {%- endfor -%}
+                {%- endif- %}
+              {%- endfor -%}
+              {% if collection.all_tags.size > 0 %}
+                {%- comment -%} {%- liquid
+                  echo collection.filters
+                -%} {%- endcomment -%}
+              
+              {% for tag in collection.all_tags %}
+                {% if current_tags contains tag %}
+                  {% if tag contains '%' %}
+                  <a class="bg-[#d7d7d7] text-white py-2 px-4 font-semibold rounded-full text-sm inline-flex space-x-2 items-center hover:opacity-[0.7]" title="Eliminar descuento del {{ tag }}" href="/collections/{{ collection.handle }}?{{ pageQuerystring }}">
+                    <span>Descuentos: {{ tag }}</span>
+                    {% render 'icon-close', class: 'w-3' %}
+                  </a>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% endif %}    
+            </div>
+            <div class="hidden lg:flex lg:justify-end"
+            x-data="{
+              loading: false,
+              sort: '{{ sort_by }}',
+              sortCollection(){
+                this.loading = true;
+                let currentSearchParams = new URLSearchParams(location.search).toString();
+                let url='';
+
+                if(currentSearchParams.includes('filter')){
+                  let form = document.querySelector('#FiltersForm');
+                  let queryParam = new URLSearchParams(new FormData(form)).toString();
+                  url = '/collections/{{ collection.handle }}?sort_by=' + this.sort + '&' + queryParam;
+                }else{
+                  url = '/collections/{{ collection.handle }}?sort_by=' +  this.sort;
+                }
+
+                fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                  const div = document.createElement('div');
+                  div.innerHTML = data;
+                  let pagination = ''
+                  const htmlData = div.querySelector('#ProductGridContainer').innerHTML;
+                  const activeFilters = div.querySelector('#ActiveFilters').innerHTML;
+
+                  if(div.querySelector('#Pagination')){
+                    pagination = div.querySelector('#Pagination').innerHTML;
+                  }
+
+                  document.querySelector('#ProductGridContainer').innerHTML = htmlData;
+                  document.querySelector('#ActiveFilters').innerHTML = activeFilters;
+                  if(document.querySelector('#Pagination')){
+                    document.querySelector('#Pagination').innerHTML = pagination; 
+                  }
+                  history.replaceState(null,null, url);
+                })
+                .catch(error => console.error('Error:', error))
+                .finally(()=> this.loading = false );
+              }
+            }">
+            {% render 'loader' %}
+            <select id="sort-by" x-model="sort" @change="sortCollection" class="bg-white border border-gray-400 focus:border-gray-800 py-2  cursor-pointer">
+              {% for option in collection.sort_options %}
+                <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %}>
+                  {{ option.name }}
+                </option>
+              {% endfor %}
+            </select>
+            </div>
+            <button class="lg:hidden flex space-x-2 border tracking-[1.5px] border-[#121212] p-2 uppercase items-center text-xs cursor-pointer hover:opacity-[0.7]" @click="$dispatch('toggle-filters')">
+              <span>Filtrar y Ordenar</span>
+              {% render 'icon-filter', class: 'w-4' %}  
+            </button>           
+          </div>
+          <div class="grid grid-cols-4 gap-6 mb-8">
+            <div class="hidden md:block md:sticky md:top-10 md:col-span-1 self-start">
+              {% render 'collection-filters', 
+                collection: collection, 
+                pageQuerystring: pageQuerystring 
+              %}              
+            </div>
+            <div class="col-span-4 lg:col-span-3">
+              <ul class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 max-h-max" id="ProductGridContainer">
+                {% for product in collection.products %}
+                  {% render 'card-product-fixed', product_card: product %}
+                {% endfor %}       
+              </ul>
+              {%- if paginate.pages > 1 -%}
+                {% render 'pagination', paginate: paginate, anchor: '' %}
+              {%- endif -%}
+            </div>      
+          </div>
+        </div>
+    {%- endpaginate -%}
+  </div>
+</div>
+{% render 'mobile-filters', pageQuerystring: pageQuerystring %}
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 16,
+      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "collapse_on_larger_devices",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.collapse_on_larger_devices.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

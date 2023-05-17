@@ -1,0 +1,84 @@
+<div class="relative w-full">
+    <picture>
+        <source media="(min-width: 800px)" srcset="{{ section.settings.desktop_banner | img_url: 'master' }}">
+        <source media="(min-width: 500px)" srcset="{{ section.settings.tablet_banner | img_url: 'master' }}">
+        <source media="(min-width: 100px)" srcset="{{ section.settings.mobile_banner | img_url: 'master' }}"> 
+        <img src="{{ section.settings.desktop_banner | img_url: 'master' }}" alt="ubicación" loading="lazy">
+    </picture>
+    <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center text-white bg-black/20">
+        <h1 class="font-bold text-2xl md:text-7xl uppercase tracking-[8px]">{{ page.title }}</h1>
+    </div>
+</div>
+<div class="page-width">
+    <div class="text-center py-8">
+        <h2 class="font-[800] tracking-[2.5px] text-xl md:text-2xl mb-4">VISITÁNOS EN NUESTRO TALLER</h2>
+        <p class="text-center tracking-[1.5px] text-base md:text-[18px]">
+            ¿ Quieres ver un mueble en específico ? Puedes visitarnos en nuestro taller<br> 
+            previa coordinación vía whatsapp . 
+        </p>
+        <a href="https://api.whatsapp.com/send/?phone=56979532074&text=Hola%2C+quiero+saber+mas+sobre+los+descuentos+del+CYBER&app_absent=0" class="btn-black my-12 w-max mx-auto" target="_blank">
+            ENVIAR MENSAJE  
+        </a>
+        <h2 class="font-[800] tracking-[2.5px] text-xl md:text-2xl mt-8 mb-4">
+            HORARIO DE ATENCIÓN
+        </h2>
+        <p class="text-center tracking-[1.5px] text-base md:text-[18px]">
+            Lunes a Viernes : 08:00 a 17:00 hrs<br>
+        </p>
+    </div>
+</div>
+
+<div class="page-width">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-4 pb-8">
+        <div>
+            <img src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/1_62bbfc7f-60be-41df-a43a-d1ecca7a352f.png?v=1654885516" alt="nuestro showroom">
+        </div>
+        <div>
+            <img src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/2_f2383cf0-aadb-4e06-b424-03ca77f09bea.png?v=1654885516" alt="nuestro showroom">
+        </div>
+        <div>
+            <img src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/3_7b1a6422-04c5-4c52-b9b8-e5550a86b823.png?v=1654885516" alt="nuestro showroom">
+        </div>
+    </div>
+</div>
+
+<div class="page-width">
+    <h2 class="font-bold tracking-[2.5px] text-xl md:text-2xl text-center">¿ TIENES ALGUNA DUDA ? CONTÁCTANOS AQUÍ</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 tracking-[1.5px] gap-6 pt-14 pb-20 text-base md:text-[18px]">
+        <div class="text-center">
+            Escríbenos a nuestro<br> 
+            whatsapp  <a href="https://api.whatsapp.com/send/?phone=56979532074&text=Hola%2C+quiero+saber+mas+sobre+los+descuentos+del+CYBER&app_absent=0" target="_blank" class="font-bold hover:underline hover:underline-offset-2">+569 73532074</a>
+        </div>
+        <div class="text-center">
+            Llámanos al<br>
+            <a href="tel:+56264692338" class="font-bold hover:underline hover:underline-offset-2">+56 2 64692338</a>
+        </div>
+        <div class="text-center">
+            Envíanos un correo<br> 
+            a <a href="mailto:hola@kallfu.pro" class="font-bold hover:underline hover:underline-offset-2">hola@kallfu.pro</a> 
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Página de ubicación",
+    "settings":[
+        {
+            "type": "image_picker",
+            "id": "desktop_banner",
+            "label": "Banner para desktop"
+        },
+        {
+            "type": "image_picker",
+            "id": "tablet_banner",
+            "label": "Banner para tablet"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_banner",
+            "label": "Banner para movil"
+        }
+    ]
+}
+{% endschema %}

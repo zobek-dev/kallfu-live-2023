@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-black {
+        @apply py-3 px-6 text-center text-sm uppercase block bg-[#121212] text-white tracking-[2.5px] border border-[#121212] hover:opacity-[0.7]
+    }
+
+    .btn-transparent{
+        @apply py-3 px-6 text-center text-sm uppercase block bg-white text-[#121212] tracking-[2.5px] border border-[#121212] hover:opacity-[0.7]
+    }
+
+    .collapsible-tab{
+        @apply border-b border-gray-300 border-t; 
+    }
+    .collapsible-tab + .collapsible-tab{
+        @apply border-t-0;
+    }
+    .header-container{
+        @apply bg-white border-y py-4 w-full;
+    }
+    .header-container.sticky{
+        @apply fixed top-0 left-0  z-10;
+    }
+}
+@layer utilities { 
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    #Carousel::-webkit-scrollbar,
+    #Recommendations::-webkit-scrollbar,
+    .no-scrollbar::-webkit-scrollbar {
+      display:none;
+    }
+
+    #Carousel,
+    #Recommendations, 
+    .no-scrollbar{
+      -ms-overflow-style: none;  
+      scrollbar-width: none; 
+    }
+    .header{
+        display:grid;
+        grid-template-areas: "header-logo header-menu header-icons";
+        grid-template-columns: 10% 80% 10% ;
+        align-items: center;
+    
+        .header__logo{
+            grid-area: header-logo;
+        }
+        .header__menu{
+            grid-area: header-menu;
+        }
+        .header__icons{
+            grid-area: header-icons;
+        }
+    
+        @media(max-width:1500px){
+            grid-template-columns: 1fr 2fr 1fr ; 
+        }
+        @media(max-width: 1100px){
+           
+            grid-template-areas: "header-menu header-logo header-icons";
+        }
+    }
+    
+    :root {
+        --swiper-navigation-color: white !important;
+        --swiper-theme-color: white !important;
+    }
+    
+    details[open] > summary > svg.icon-caret{
+        transform: rotate(180deg);
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    #MenuDrawer-Container{
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+    
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    #MenuDrawer-Container::-webkit-scrollbar{
+      display:none;  
+    }
+        
+    .input-search:focus{
+        border-color:transparent;
+        outline:none;
+    }
+    
+    .description{
+        h1{
+            font-size:18px;
+            font-weight:bold;
+            text-transform: uppercase;
+            margin-bottom:1rem;
+            line-height: 1.2;
+        }
+        p{
+            margin-bottom:1rem;
+        }
+    }
+    
+    div[x-ref=slider]::-webkit-scrollbar{
+        display: none;
+    }
+    
+    div[x-ref=slider]{
+        -ms-overflow-style: none;  
+        scrollbar-width: none; 
+    }
+    
+    .product-details{
+       grid-template-areas: "material-text material-img";
+       @media(max-width:768px){
+            grid-template-areas: "material-img"
+                                 "material-text";
+       }    
+    }
+    
+    .material-text{
+        grid-area: material-text;
+    }
+    
+    .material-img{
+        grid-area: material-img;
+    }
+
+    .filter-group[open] > summary > svg{
+        transform: rotate(90deg)
+    }
+
+    #shopify-block-loox-rating{
+        @apply mb-2
+    }
+}
+    
+
+.swiper-pagination-bullet {
+    opacity: .5; /*was 0.2 and was impossible to see on some background images*/
+}
+.swiper-pagination-bullet-active {
+    background: #ffffff;
+}
+
+.grid-medidas{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "text-medida  image-medida";  
+}
+
+.text-medida{
+   grid-area: text-medida; 
+}
+
+.image-medida{
+   grid-area: image-medida; 
+}
+
+@media(max-width:768px){
+    .grid-medidas{
+        grid-template-columns: 1fr;
+        grid-template-areas: "image-medida"
+                             "text-medida";           
+    }
+}
+
+.valores{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "valores-text valores-img";
+    align-items: center;
+    gap:1.5rem;
+    padding: 1.5rem 0;
+}
+
+.valores-text{
+    grid-area: valores-text;
+}
+.valores-img{
+    grid-area: valores-img;
+}
+
+@media(max-width:768px){
+    .valores{
+        grid-template-columns: 1fr;
+        grid-template-areas: "valores-img"
+                             "valores-text";           
+    }
+}
+
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.gallery-thumbs .swiper-slide {
+    width:10%;
+    height: 100%;
+    opacity: 0.4;
+
+    @media(max-width:600px){
+        width:20%;
+    }
+}
+
+.gallery-thumbs .swiper-slide-active {
+    opacity: 1;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    z-index:5 !important;
+}
+
+.shopify-policy__container{
+    margin: 3rem auto !important;
+}
+
+.shopify-policy__title > h1{
+    @apply text-xl md:text-2xl tracking-[1.5px] font-bold uppercase mb-6
+}
+
+.shopify-policy__body{
+    @apply tracking-[1.5px]
+}
+
+.shopify-policy__body > .rte > p > b{
+    @apply block mb-2
+}
+
+.shopify-policy__body > .rte > p{
+    @apply block mb-4
+} 
+.text-\[7px\] {
+    font-size: 7px;
+}
+.text-\[8px\] {
+    font-size: 8px;
+}
+
+.tag-active:disabled{
+  @apply accent-black;
+}
+
+/*Added 23 nov 2022 works with the variant bubble selectors */
+.selected-variant{
+  @apply text-white bg-[#121212]
+}
+
+.rich-title{
+  strong{
+    @apply text-[#00abdd]
+  }
+}
+
+.rich-content{
+  p{
+    @apply mb-4
+  }
+}

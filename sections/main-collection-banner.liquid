@@ -1,0 +1,26 @@
+
+<div class="page-width">
+   {% render 'breadcrumb' %}
+</div>
+{%- if collection.metafields.my_fields.banner_desktop != blank -%}
+<div class="relative w-full mb-6">
+  <picture>
+    <source media="(min-width: 799px)" srcset="{{ collection.metafields.my_fields.banner_desktop | img_url: 'master' }}"> 
+    <source media="(min-width: 399px)" srcset="{{ collection.metafields.my_fields.banner_tablet | img_url: 'master'}}">
+    <source media="(min-width: 100px)" srcset="{{ collection.metafields.my_fields.banner_mobile | img_url: 'master' }}">
+    <img src="{{ collection.metafields.my_fields.banner_desktop | img_url: 'master' }}" alt="{{ collection.tilte }}" loading="lazy" class="w-full">
+  </picture>
+  <div class="absolute bg-black/10 w-full h-full top-0 left-0 flex flex-col justify-center items-center text-white">
+      <h1 class="text-3xl sm:text-6xl tracking-[8px] uppercase font-bold text-center mb-4 md:mb-6 mx-[5%]">{{ collection.title | escape }}</h1>
+      {% if collection.description != blank %}
+        <h2 class="text-base md:text-2xl tracking-[2.5px] font-[500] text-center mb-6 max-w-[800px] block mx-[5%]">
+            {{ collection.description }}
+        </h2> 
+      {% endif %}
+  </div>
+</div>
+{%- else -%}
+    <div class="page-width text-center">
+        <h1 class="text-base tracking-[2.5px] font-bold uppercase">{{ collection.title | escape }}</h1>  
+    </div>
+{%- endif -%}

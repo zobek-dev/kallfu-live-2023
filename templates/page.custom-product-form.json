@@ -1,0 +1,124 @@
+{
+  "sections": {
+    "custom-product": {
+      "type": "custom-product-template",
+      "blocks": {
+        "643a9bcf-bc55-456b-bcce-eb3ed4d6b7c4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/9_4e984872-d966-45d8-8936-5490dd7d74a6.png",
+            "alt_text": ""
+          }
+        },
+        "c49acaab-c5d0-4384-892a-0924c1e20176": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2_1.jpg",
+            "alt_text": ""
+          }
+        },
+        "717e3860-0775-452f-9990-844833f06e67": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/4_de0b5269-2168-41b5-abf4-ef9f00b3568d.png",
+            "alt_text": ""
+          }
+        },
+        "26f1ed6a-9613-4b7b-9db3-fb8bb7891b5a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/9_f6aef5d8-2b4e-498f-b014-9a38a72a32fe.png",
+            "alt_text": ""
+          }
+        },
+        "98eb57f7-c699-43c8-9aca-5f1b9bee0b9c": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/1_8215b95d-d30c-4a71-ab2e-51c402ee5b27.png",
+            "alt_text": ""
+          }
+        },
+        "a5acb0e1-ed33-483a-9bf7-60d2e4e695b8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2_32188748-0f57-4281-a5e8-21f9f1ef790d.png",
+            "alt_text": ""
+          }
+        },
+        "3759aade-aec4-4f0a-994a-29d502d49115": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/3_d704e0cb-c254-4ea0-abf4-fa107afe636b.png",
+            "alt_text": ""
+          }
+        },
+        "7626ad43-c83a-4dcc-8c0f-f983ff335dfc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/4_ae9cb9ff-f008-4018-96bd-a9ddd2edef63.png",
+            "alt_text": ""
+          }
+        },
+        "caea892a-3653-4e47-aeed-3fe173ae507b": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/6_d2e9d3e8-71b1-40cc-85bd-7147681d5983.png",
+            "alt_text": ""
+          }
+        },
+        "3addabba-3f2a-4e00-899e-50b415e9f88b": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/7_e54ad837-6663-4943-b381-86327c18a521.png",
+            "alt_text": ""
+          }
+        },
+        "e47d3285-4dfe-484b-bae3-8cf9811367ea": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/8_bc126d42-8eb5-47e3-85db-044ed483b38a.png",
+            "alt_text": ""
+          }
+        },
+        "21912a95-86bc-4cc1-9ef1-504878a5c3e8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10_d51c9eed-1ab4-414b-87bc-88d610856d6f.png",
+            "alt_text": ""
+          }
+        },
+        "b2ab9892-2443-4a53-8933-8e4f82e7dbaa": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "643a9bcf-bc55-456b-bcce-eb3ed4d6b7c4",
+        "c49acaab-c5d0-4384-892a-0924c1e20176",
+        "717e3860-0775-452f-9990-844833f06e67",
+        "26f1ed6a-9613-4b7b-9db3-fb8bb7891b5a",
+        "98eb57f7-c699-43c8-9aca-5f1b9bee0b9c",
+        "a5acb0e1-ed33-483a-9bf7-60d2e4e695b8",
+        "3759aade-aec4-4f0a-994a-29d502d49115",
+        "7626ad43-c83a-4dcc-8c0f-f983ff335dfc",
+        "caea892a-3653-4e47-aeed-3fe173ae507b",
+        "3addabba-3f2a-4e00-899e-50b415e9f88b",
+        "e47d3285-4dfe-484b-bae3-8cf9811367ea",
+        "21912a95-86bc-4cc1-9ef1-504878a5c3e8",
+        "b2ab9892-2443-4a53-8933-8e4f82e7dbaa"
+      ],
+      "settings": {
+        "hero_desktop": "shopify:\/\/shop_images\/Sin_titulo-1_Mesa_de_trabajo_1_copia_3_6e0db4e2-6b17-4f73-83ba-86bb9207c4ba.jpg",
+        "hero_mobile": "shopify:\/\/shop_images\/Sin_titulo-1-10.jpg",
+        "visita_url": "https:\/\/api.whatsapp.com\/send\/?phone=56979532074&text=Hola%2C+quiero+saber+mas+sobre+los+descuentos+del+CYBER&app_absent=0",
+        "visita_imagen": "shopify:\/\/shop_images\/img-servicioamedida-home.png"
+      }
+    }
+  },
+  "order": [
+    "custom-product"
+  ]
+}

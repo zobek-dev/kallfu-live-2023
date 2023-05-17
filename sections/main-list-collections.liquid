@@ -1,0 +1,17 @@
+<div class="tracking-[1.5px] my-8">
+    <div class="page-width">
+        <h1 class="text-2xl uppercase tracking-[2.5px] text-center mb-8">Nuestras Colecciones</h1>
+        <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for collection in collections %}
+            <li class="group">
+               <a href="{{ collection.url }}">
+                   <img src="{{ collection.featured_image.src | img_url: '600x'}}" alt="{{ collection.title }}" class="group-hover:opacity-70">     
+               </a> 
+               <div class="content">
+                  <h3 class="uppercase my-2 group-hover:underline group-hover:underline-offset-2">{{ collection.title | escape | link_to: collection.url }}</h3>
+               </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

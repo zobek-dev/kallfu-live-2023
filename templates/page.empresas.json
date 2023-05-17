@@ -1,0 +1,220 @@
+{
+  "sections": {
+    "empresas": {
+      "type": "empresas-template",
+      "blocks": {
+        "bd562449-3240-4c0c-97cf-63c29924399b": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/wework.png",
+            "alt_empresa": "wework",
+            "empresa_url": "https:\/\/www.wework.com\/es-LA\/l\/office-space\/chile"
+          }
+        },
+        "465511e3-0afb-4aea-bf20-58d9eb6ecd8e": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/bosch.png",
+            "alt_empresa": "Bosch",
+            "empresa_url": "https:\/\/www.bosch.cl\/"
+          }
+        },
+        "0283147e-e77b-4f29-be91-aa7d6a407a8f": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/lombardis.png",
+            "alt_empresa": "Lombardis",
+            "empresa_url": "http:\/\/lombardis.cl\/"
+          }
+        },
+        "47d9263d-9618-4fc0-ad98-9d4869d36c25": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/DANDO-LA-HORA.png",
+            "alt_empresa": "Dando la hora",
+            "empresa_url": "https:\/\/www.dandolahora.cl\/"
+          }
+        },
+        "fc7a427e-72b6-4cde-88d9-26303e41797a": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/CATALOGO-ARQUITECTURA.png",
+            "alt_empresa": "catalogo arquitectura",
+            "empresa_url": "https:\/\/www.catalogoarquitectura.cl\/"
+          }
+        },
+        "ae0db4d0-9294-4908-8697-651773f76d1a": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/HOTEL-ATACAMA.png",
+            "alt_empresa": "Atacama suites hotel",
+            "empresa_url": "https:\/\/hotelatacamasuites.cl\/"
+          }
+        },
+        "db1bf883-89e1-49e9-96f6-436bdebc148b": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/FUNDACION-99.png",
+            "alt_empresa": "fundación noventa & nueve",
+            "empresa_url": "https:\/\/fundacion99.org\/"
+          }
+        },
+        "b9d27d07-1051-4be5-b9e8-cfa6d0a861e2": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/logo-winko-gris.png",
+            "alt_empresa": "Winko",
+            "empresa_url": "https:\/\/winko.cl\/"
+          }
+        },
+        "166571be-2c3e-4154-bbe0-b5690efdad4e": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/PROJAZZ.png",
+            "alt_empresa": "projazz",
+            "empresa_url": "https:\/\/projazz.cl\/"
+          }
+        },
+        "fd096e8d-7250-4ca3-aa71-526d9b4444b9": {
+          "type": "slide",
+          "settings": {
+            "image_empresa": "shopify:\/\/shop_images\/TESTARDOS-PIZZA.png",
+            "alt_empresa": "Testados pizza",
+            "empresa_url": "https:\/\/www.testardos.pizza\/"
+          }
+        },
+        "f83765e1-cb76-4f61-9d35-fc3b065da3d4": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/1_7a0b4adf-9e1b-44d6-a0f3-375331adf719.png"
+          }
+        },
+        "bd057c8c-8646-478d-95c3-16516a934152": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2_4f35d701-5fa0-4b92-a3bf-f2d9142e8bad.png"
+          }
+        },
+        "7e3ab6ee-5a8d-431c-9516-553a5fd8538b": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/3_417ddac4-a3f4-4a18-a653-8aa41dc9fb74.png"
+          }
+        },
+        "5bf0b2c6-1a6f-43d0-82ba-95292d22796c": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/4_81112c9d-c689-44a1-9de8-68cb2c520974.png"
+          }
+        },
+        "782eb866-7b90-4693-951e-49844c6b5238": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/5_0d0d5206-a8aa-45e5-8dd4-3f105527ab0b.png"
+          }
+        },
+        "8b2f80b1-e9a5-461b-8c8d-79caffe0f41c": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/7_c2439167-814f-495a-93dc-2b95406a8de4.png"
+          }
+        },
+        "bb085056-3241-4113-a8c4-3b09c18f6da7": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/9_59f30904-42fa-4c1c-8d95-d3d4b62ec443.png"
+          }
+        },
+        "d1759de9-5fa1-4cd9-9a9a-027bd4645cf1": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/10_6280b409-e7f4-4b0f-8644-872e9ce1757e.png"
+          }
+        },
+        "07c2ae5a-705c-40b3-bb8d-509d22c4653a": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/11_c8042717-0073-4c93-9b32-8c29d49a22c8.png"
+          }
+        },
+        "b83d8446-28b2-4987-a8a4-8869fc37b182": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/12_ecebc90b-b261-432c-bb1e-23f6207d0a13.png"
+          }
+        },
+        "b616e87c-3e92-42c9-884a-8da2c7b78aaf": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/13_660134fe-2ed5-45f4-ac97-94e49a919e82.png"
+          }
+        },
+        "a16d6935-01e8-4dc0-9c1d-2075ed8c1392": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/14_381ca99d-bbdc-409a-b531-bdb263ac3ab2.png"
+          }
+        },
+        "6618307b-43c4-4e89-a149-ea472956e4a4": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/15_e07ad3e9-d583-46e1-8968-9a491df05250.png"
+          }
+        },
+        "6754de38-45fe-4289-8114-53e0c143d3eb": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/16.png"
+          }
+        },
+        "aaef7341-efb8-44f8-9a74-2ad1ae729f2e": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/17.png"
+          }
+        },
+        "adc8dc65-c290-48aa-b5c1-643ded6ef9b0": {
+          "type": "slideshow",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/18.png"
+          }
+        }
+      },
+      "block_order": [
+        "bd562449-3240-4c0c-97cf-63c29924399b",
+        "465511e3-0afb-4aea-bf20-58d9eb6ecd8e",
+        "0283147e-e77b-4f29-be91-aa7d6a407a8f",
+        "47d9263d-9618-4fc0-ad98-9d4869d36c25",
+        "fc7a427e-72b6-4cde-88d9-26303e41797a",
+        "ae0db4d0-9294-4908-8697-651773f76d1a",
+        "db1bf883-89e1-49e9-96f6-436bdebc148b",
+        "b9d27d07-1051-4be5-b9e8-cfa6d0a861e2",
+        "166571be-2c3e-4154-bbe0-b5690efdad4e",
+        "fd096e8d-7250-4ca3-aa71-526d9b4444b9",
+        "f83765e1-cb76-4f61-9d35-fc3b065da3d4",
+        "bd057c8c-8646-478d-95c3-16516a934152",
+        "7e3ab6ee-5a8d-431c-9516-553a5fd8538b",
+        "5bf0b2c6-1a6f-43d0-82ba-95292d22796c",
+        "782eb866-7b90-4693-951e-49844c6b5238",
+        "8b2f80b1-e9a5-461b-8c8d-79caffe0f41c",
+        "bb085056-3241-4113-a8c4-3b09c18f6da7",
+        "d1759de9-5fa1-4cd9-9a9a-027bd4645cf1",
+        "07c2ae5a-705c-40b3-bb8d-509d22c4653a",
+        "b83d8446-28b2-4987-a8a4-8869fc37b182",
+        "b616e87c-3e92-42c9-884a-8da2c7b78aaf",
+        "a16d6935-01e8-4dc0-9c1d-2075ed8c1392",
+        "6618307b-43c4-4e89-a149-ea472956e4a4",
+        "6754de38-45fe-4289-8114-53e0c143d3eb",
+        "aaef7341-efb8-44f8-9a74-2ad1ae729f2e",
+        "adc8dc65-c290-48aa-b5c1-643ded6ef9b0"
+      ],
+      "settings": {
+        "image_desktop": "shopify:\/\/shop_images\/d.png",
+        "image_mobile": "shopify:\/\/shop_images\/m.png"
+      }
+    }
+  },
+  "order": [
+    "empresas"
+  ]
+}

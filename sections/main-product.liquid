@@ -1,0 +1,957 @@
+{{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+
+{% assign id_name = 'add-to-cart-' | append: product.handle | append: '-' | append: collection.handle | append: '-' | append: section.id %}
+{% assign porcentage = product.compare_at_price_max | minus:product.price | times:100 | divided_by:product.compare_at_price_max %}
+
+<div x-data="{
+  current: 1,
+  open: false
+}">
+  <div class="block sm:hidden" x-data="{swiper : null}" x-init="swiper = new Swiper($refs.slider, {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 0,
+    pagination: {
+        el: $refs.pagination,
+        type: 'fraction',
+    }
+  })">
+    <div class="swiper-container relative overflow-hidden" x-ref="slider">
+        <ul class="swiper-wrapper">
+            {% for media in product.media %}
+            {% case media.media_type %} 
+            {% when 'image' %}
+            <li class="swiper-slide cursor-pointer" @click="open=true">
+              {{ media | image_url: width:800 | image_tag: loading: 'lazy' }}
+            </li>
+            {% when 'external_video' %}
+            <li class="swiper-slide cursor-pointer" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100}}%;" data-media-id="{{ media.id }}" @click="open=true">
+              {{ media | external_video_tag: width: 800 | external_video_tag: loading: 'lazy' }}
+            </li>
+            {% when 'video' %}
+            <li class="swiper-slide cursor-pointer" data-media-id="{{ media.id }}" @click="open=true">
+              {{ media | video_tag: controls: true | video_url: width: 800 | video_tag: loading: 'lazy' }}
+            </li>
+            {% endcase %} 
+            {% endfor %}
+        </ul>
+        <div class="absolute right-4 bottom-4 bg-[#121212] text-white text-sm p-2" style="width:max-content; left:unset;z-index:4;" x-ref="pagination"></div>
+        {% if product.compare_at_price_max > product.price %}
+        <div class="absolute top-4 right-4 bg-[#121212]  tracking-[1.5px] text-white text-sm font-bold p-2" style="width:max-content; left:unset;z-index:4;">{{ porcentage }}% OFF</div>
+        {% endif %}
+    </div> 
+  </div>
+  <div class="fixed z-50 left-0 top-0 bg-[#121212] w-full h-full text-white"  
+  x-show="open"
+  x-transition.duration.200ms
+  >
+    <div x-data="{upper:null}"
+      x-init="upper=new Swiper($refs.modal_slider, {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      pagination: {
+        el: $refs.count,
+        type: 'fraction',
+      }
+    })" 
+    class="h-full relative"
+    >
+         
+      <div class="absolute w-full">
+        <div class="page-width">
+          <div class="flex items-center justify-between py-4">
+            <div class="opacity-0">
+              la
+            </div>
+            <div x-ref="count" style="position:relative !important; display:block !important; width:max-content!important; bottom:unset !important; left: unset !important;">
+            </div>
+            <button @click="open=false">
+              {% render 'icon-close', class: 'w-4' %}
+              <span class="sr-only">Cerrar la galería</span>
+            </button>
+          </div> 
+        </div>
+      </div>
+      <div class="flex flex-col justify-center h-full">
+        <div class="swiper-container" x-ref="modal_slider">
+          <ul class="swiper-wrapper">
+            {% for media in product.media %}
+            {% case media.media_type %} 
+            {% when 'image' %}
+            <li class="swiper-slide cursor-pointer">
+              {{ media | image_url: width:800 | image_tag: loading: 'lazy' }}
+            </li>
+            {% when 'external_video' %}
+            <li class="swiper-slide cursor-pointer" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100}}%;" data-media-id="{{ media.id }}">
+              {{ media | external_video_tag: width: 800 | external_video_tag: loading: 'lazy' }}
+            </li>
+            {% when 'video' %}
+            <li class="swiper-slide cursor-pointer" data-media-id="{{ media.id }}">
+              {{ media | video_tag: controls: true | video_url: width: 800 | video_tag: loading: 'lazy' }}
+            </li>
+            {% endcase %}
+            {% endfor %}
+          </ul>
+        </div> 
+      </div>    
+    </div>
+  </div>
+</div>
+<div x-data="{open:false}"
+x-init="function(){
+  window.addEventListener('keyup', e=>{
+    if(e.key === 'Escape'){
+      this.open=false;
+    }
+  })
+}"
+>
+  <section class="page-width">
+    {% render 'breadcrumb' %}   
+    <div class="product grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 sm:gap-6">
+      <div class="product__media-wrapper xl:col-span-2 h-max relative">
+          <div class="hidden sm:grid grid-cols-2 gap-3">
+              {% for media in product.media %}
+              {% assign modul = product.media.size | modulo: 2 %}
+                  {% case media.media_type %} 
+                  {% when 'image' %}
+                      <div class="media-wrapper border border-gray-200 max-h-max {% if forloop.first or forloop.last and modul == 0 %}col-span-2{% endif %} cursor-pointer relative" @click="open=true"> 
+                          {{ media | image_url: width:1600 | image_tag: loading: 'lazy' }}
+                          {% if forloop.first and product.compare_at_price_max > product.price %}
+                            <div class="absolute top-4 right-4 bg-[#121212]  tracking-[1.5px] text-white text-base font-bold p-2" style="width:max-content; left:unset;z-index:4;">{{ porcentage }}% OFF</div>
+                          {% endif %}             
+                      </div>
+                  {% when 'external_video' %}
+                      <div class="media-wrapper border border-gray-200 max-h-max {% if forloop.first or forloop.last and modul == 0 %}col-span-2{% endif %} cursor-pointer relative" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" data-media-id="{{ media.id }}" @click="open=true">
+                        {{ media | external_video_tag: class:'w-full h-[403px]' }}
+                        {% if forloop.first and product.compare_at_price_max > product.price %}
+                          <div class="absolute top-4 right-4 bg-[#121212]  tracking-[1.5px] text-white text-base font-bold p-2" style="width:max-content; left:unset;z-index:4;">{{ porcentage }}% OFF</div>
+                        {% endif %}
+                      </div>
+                  {% when 'video' %}
+                      <div class="media-wrapper border border-gray-200 max-h-max {% if forloop.first or forloop.last and modul == 0 %}col-span-2{% endif %} cursor-pointer relative" @open="true">
+                        {{ media | video_tag: controls: true, class: 'w-full' }}
+                        {% if forloop.first and product.compare_at_price_max > product.price %}
+                          <div class="absolute top-4 right-4 bg-[#121212]  tracking-[1.5px] text-white text-base font-bold p-2" style="width:max-content; left:unset;z-index:4;">{{ porcentage }}% OFF</div>
+                        {% endif %}
+                      </div>      
+                  {% endcase %}
+              {% endfor %}
+          </div>
+      </div>  
+      <div class="product__info-wrapper sm:pt-6 sticky top-12 self-start">
+        <div id="ProductInfo-{{ section.id }}" x-data="{
+            addToCart(){
+              let formData = new FormData($refs.product_form);
+              formData.append('quantity', $refs.quantity_info.value);
+              fetch('/cart/add.js', {
+                method: 'POST',
+                body: formData
+              })
+              .then(response => response.json())
+              .then(response => {
+                this.$dispatch('cart-updated');
+                this.$dispatch('toggle-cart');
+              })
+              .catch((error) => console.log('Error', error));  
+            },
+            up(){
+              $refs.quantity_info.stepUp();
+            },
+            down(){
+              $refs.quantity_info.stepDown();
+            }     
+        }">
+          {%- assign product_form_id = 'product-form-' | append: section.id -%}
+  
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when 'text' -%} 
+              <p class="uppercase tracking-[2.5px] text-xs">
+                {{- block.settings.text -}}
+              </p>
+            {%- when 'title' -%}
+              {% comment %}
+              <p class="uppercase tracking-[1.5px] mb-2 text base">VENTA DE BODEGA</p>
+              <p class="uppercase tracking-[1.5px] mb-2 text base">BLACK KALLFÜ</p>
+              <p class="uppercase tracking-[1.5px] mb-2 text base">PRE-CYBER</p>
+              <p class="uppercase tracking-[1.5px] mb-2 text base">HAPPY WEEK</p>
+              
+              <!--CYBER-->
+              <img 
+                src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/logo_cyber_azul-removebg-preview.png?v=1653440965" 
+                width="96" 
+                height="33.47" 
+                alt="cyber" 
+                class="mb-2 w-24" 
+                loading="lazy"
+              >
+              <p class="uppercase tracking-[1.5px] mb-2 text base">POST-CYBER</p>
+               <p class="uppercase tracking-[1.5px] mb-2 text base">Black October</p>
+               <p class="uppercase tracking-[1.5px] mb-2 text base">BLACKFRIDAY</p>
+               <p class="uppercase tracking-[1.5px] mb-2 text base">BLACK-K</p>
+               <p class="uppercase tracking-[1.5px] mb-2 text base">New Year Sale</p>
+               <p class="uppercase tracking-[1.5px] mb-2 text base">Summer days</p> 
+               <p class="uppercase tracking-[1.5px] mb-2 text base">BLACKFRIDAY</p>
+            {% endcomment %}
+            
+             
+              <h2 class="product__title text-[25px] tracking-[2.5px] font-bold uppercase leading-tight mb-4">
+                {{ product.title | escape }}
+              </h2>
+              {% render 'shipping-color-snippet', 
+                tags: product.tags, 
+                product_id: product.selected_or_first_available_variant.id,
+                size: 'text-xs' 
+              %}
+            {%- when 'price' -%}
+              <div class="flex justify-between items-center">
+                  {% if product.price < product.compare_at_price_max %}
+                    <div class="flex flex-col lg:flex-row lg:gap-4 lg:items-center">
+                      <p class="text-[35px] font-bold tracking-[2.5px]">{{ product.price | money }}</p>
+                      <s class="text-sm tracking-[2.5px]">{{ product.compare_at_price_max | money }}</s>
+                    </div>
+                  {% else %}
+                    <div>
+                      <p class="text-[35px] font-bold tracking-[2.5px]">{{ product.price | money }}</p>
+                    </div>                          
+                  {% endif %}
+                  <a href="#ProductDetails" class="block py-2 px-2 text-xs uppercase border border-[#121212] tracking-[2.5px] hover:opacity-[0.7]" title="Ver los detalles del producto">Detalles</a>
+              </div>
+              
+              {% if product.price < product.compare_at_price_max %}
+                <p class="text-sm mt-2 md:mt-0 mb-2 tracking-[2.5px]"><strong>{{ porcentage }}%</strong> de descuento.</p>       
+              {% endif %}
+              <p class="text-sm tracking-[2.5px] {% if product.price < product.compare_at_price_max %}mb-2{% else %}mt-2 mb-4{% endif %}"> Paga hasta en <strong>12 cuotas</strong> sin interés de <strong>{{ product.selected_or_first_available_variant.price | divided_by: 12 | money }}</strong></p>
+              {% comment %}
+              <p class="text-sm tracking-[2.5px] mb-4"><strong>{{ product.selected_or_first_available_variant.inventory_quantity | plus: 20 }}</strong> unidades disponibles.</p>
+              {% endcomment %}
+            {%- when 'description' -%}
+              {%- if product.description != blank -%}
+                <div class="description text-base tracking-[1.5px] mb-6">
+                  {{ product.description }}
+                </div>
+              {%- endif -%}
+            {%- when 'custom_liquid' -%}
+              {{ block.settings.custom_liquid }}
+            {%- when 'collapsible_tab' -%}
+              <div class="collapsible-tab">
+                <details>
+                  <summary class="flex justify-between items-center py-4 cursor-pointer">
+                    <h2 class="text-sm uppercase tracking-[2.5px]">
+                      {{ block.settings.heading | default: block.settings.page.title }}
+                    </h2>
+                    {% render 'icon-caret', class: 'w-3' %}
+                  </summary>
+                  <div class="px-2 mb-2 text-base tracking-[1.5px]">
+                    {{ block.settings.content }}
+                    {{ block.settings.page.content }}
+                  </div>
+                </details>
+              </div>
+            {%- when 'quantity_selector' -%}
+              <div class="border border-gray-500 flex w-max focus-within:border-gray-900 mb-[1rem]">
+                <button class="px-4 py-2 hover:scale-105" @click="down" title="Reducir en 1 la cantidad">
+                {% render 'icon-minus', class: 'w-3' %}
+                </button>
+                <input type="number" name="quantity" form="id_name" value="1" min="1" class="text-center w-[60px] focus:border-transparent focus:outline-none" x-ref="quantity_info">
+                <button class="px-4 py-4 hover:scale-105" @click="up" title="Aumentar en 1 la cantidad">
+                  {% render 'icon-plus', class: 'w-3' %}
+                </button>
+              </div>   
+            {%- when 'buy_buttons' -%}
+              <div>
+                <form 
+                  method="post"
+                  action="{{ routes.add_to_cart }}"
+                  id="{{ id_name }}"
+                  accept-charset="UTF-8"
+                  class="form"
+                  enctype="multipart/formdata"
+                  novalidate="novalidate"
+                  x-ref="product_form"
+                >
+                  <input type="hidden" name="form_type" value="product">
+                  <input type="hidden" name="utf8" value="✓">
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+  
+                  <button type="button" @click="addToCart()" name="add" class="btn-black mb-[2.5rem]">
+                    Agregar al carrito
+                  </button>   
+                </form>
+              </div>
+            {%- when 'popup' -%}
+              
+            {%- when 'variant_picker' -%}
+           
+            {%- when 'rating' -%}
+            {%- endcase -%} 
+          {%- endfor -%}
+        </div>
+        <div class="my-6">
+          <h3 class="uppercase text-lg tracking-[2.5px] font-bold mb-[1rem]">
+            Considere
+          </h3>
+          <ul class="pl-4 tracking-[1.5px]">
+            <li class="list-disc mb-2">Devolución gratuita en Región Metropolitana.</li>
+            <li class="list-disc mb-2">Atención al cliente de Lunes a Viernes | 08:00 a 17:00 hrs vía whatsapp</li>
+            <li class="list-disc mb-2">Garantía de satisfacción.</li>
+            <li class="list-disc mb-2">Luego de realizar tu compra, nuestro equipo te contactrá vía whatsapp para coordinar la entrega de tu producto y resolver cualquier duda que tengas.</li>
+            <li class="list-disc mb-2">Si gustas ver con más detalles el mueble que quieres, puedes visitarnos a nuestro taller, previa coordinación con nuestro equipo vía whatsapp.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="fixed bg-[#121212] top-0 left-0 w-full h-full z-50 text-white"  x-show="open" x-transition.duration.200ms>
+    <div x-data="{ swiper:null }"
+    x-init="swiper = new Swiper($refs.fade_slider, {
+      spaceBetween: 30,
+      effect: 'fade',
+      loop:true,
+      pagination: {
+        el: $refs.count,
+        type: 'fraction',
+      },
+      keyboard: {
+        enabled: true,
+        onlyInViewport: false,
+      }
+    })" 
+    class="h-full relative">
+      <div class="absolute w-full">
+        <div class="page-width">
+          <div class="flex justify-between items-center py-8">
+            <div class="opacity-0">
+              al
+            </div>
+            <div x-ref="count" style="position:relative !important; display:block !important; width:max-content!important; bottom:unset !important; left: unset !important;"></div>
+            <button class="hover:opacity-[0.7] cursor-pointer" @click="open=false">
+              {% render 'icon-close', class: 'w-4' %}
+              <span class="sr-only">Cerrar Galería</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex flex-col justify-center items-center h-full">
+        <div class="block w-[800px] pt-20">
+          <div class="swiper-container overflow-hidden" x-ref="fade_slider">
+            <ul class="swiper-wrapper">
+              {% for media in product.media %}
+              {% case media.media_type %} 
+              {% when 'image' %}
+              <li class="swiper-slide cursor-pointer">
+                {{ media | image_url: width:1600 | image_tag: loading: 'lazy' }}
+              </li>
+              {% when 'external_video' %}
+              <li class="swiper-slide cursor-pointer" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100}}%;" data-media-id="{{ media.id }}">
+                {{ media | external_video_tag: width: 1600 | external_video_tag: loading: 'lazy' }}
+              </li>
+              {% when 'video' %}
+              <li class="swiper-slide cursor-pointer" data-media-id="{{ media.id }}">
+                {{ media | video_tag: controls: true | video_url: width: 1600 | video_tag: loading: 'lazy' }}
+              </li>
+              {% endcase %}     
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <button class="text-white absolute top-1/2 left-20 w-12 h-12 p-4 flex justify-center items-center border border-white rounded-[50%] hover:opacity-[0.7]" @click="swiper.slidePrev()"><</button>
+      <button class="text-white absolute top-1/2 right-20 w-12 h-12 p-4 flex justify-center items-center border border-white rounded-[50%] hover:opacity-[0.7]" @click="swiper.slideNext()">></button>
+    </div>
+  </div>
+</div>
+
+ 
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ request.origin | append: product.url | json }},
+    {% if seo_media -%}
+      {%- assign media_size = seo_media.preview_image.width | append: 'x' -%}
+      "image": [
+        {{ seo_media | img_url: media_size | prepend: "https:" | json }}
+      ],
+    {%- endif %}
+    "description": {{ product.description | strip_html | json }},
+    {% if product.selected_or_first_available_variant.sku != blank -%}
+      "sku": {{ product.selected_or_first_available_variant.sku | json }},
+    {%- endif %}
+    "brand": {
+      "@type": "Thing",
+      "name": {{ product.vendor | json }}
+    },
+    "offers": [
+      {%- for variant in product.variants -%}
+        {
+          "@type" : "Offer",
+          {%- if variant.sku != blank -%}
+            "sku": {{ variant.sku | json }},
+          {%- endif -%}
+          "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "url" : {{ request.origin | append: variant.url | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+</script>
+
+<div class="fixed w-full bg-[#121212] text-white bottom-0 left-0 z-10 py-4 border-t" x-data="{
+  show:false,
+  addToCart(){
+    let formData = new FormData($refs.form_product);
+    formData.append('quantity', $refs.quantity.value);
+    // for(var pair of formData.entries()){
+    //   console.log(pair[0] + ', ' + pair[1])
+    // }
+    fetch('/cart/add.js', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(response=>{
+      this.$dispatch('cart-updated');
+      this.$dispatch('toggle-cart');
+    })
+    .catch(error => console.error('Error: ', error)) 
+  },
+  up(){
+    $refs.quantity.stepUp();
+  },
+  down(){
+    $refs.quantity.stepDown();
+  }
+}">
+  <div class="page-width">
+    <form action="{{ routes.cart_add_url }}" x-ref="form_product">
+       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    </form> 
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-1 md:gap-2">
+      <div class="flex flex-col">
+        <h2 class="text-sm sm:text-base uppercase tracking-[1.5px]">{{ product.title }}</h2>
+        {% if product.price < product.compare_at_price_max %}
+          <div class="flex justify-start items-center gap-4 ">
+            <h3 class="text-xl font-bold tracking-[1.5px]">{{ product.price | money }}</h3>
+            <s class="text-xs tracking[1.5px]">{{ product.compare_at_price_max | money }}</s>
+            <p class="tracking-[1.5px] text-sm">{{ porcentage }}% de descuento</p>
+          </div>
+        {% else %}
+          <div class="flex justify-start">
+            <h3 class="text-xl font-bold tracking-[1.5px]">{{ product.price | money }}</h3>
+          </div> 
+        {% endif %}
+      </div>
+      <div class="hidden xl:flex xl:flex-col">
+        {% assign cuotas = product.price | divided_by: 12 | money %}
+        <p class="tracking-[1.5px] text-base">Puedes pagar hasta en 12 cuotas de {{ cuotas }}</p>
+        {% render 'shipping-color-snippet', 
+          tags: product.tags, 
+          product_id: product.selected_or_first_available_variant.id,
+          size: 'text-xs' 
+        %}
+      </div>
+      <div class="flex space-between items-center gap-4">
+        <button type="button" @click="addToCart()" class="btn-black border-white px-2">
+          <span class="text-xs">Agregar al Carrito</span>
+        </button>
+        <div class="flex bg-[#121212] text-center border border-white focus-within:border-white">
+          <button @click="down()" class="text-2xl px-2 py-1">
+            <span>-</span>  
+            <span class="sr-only">Quitar uno</span>
+          </button>
+          <input type="number" name="quantity" min="1" value="1" x-ref="quantity" class="outline-none text-center w-[50px] bg-[#121212]">
+          <button @click="up()" class="text-2xl px-2 py-1">
+            <span>+</span> 
+            <span class="sr-only">Agregar uno</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-product.name",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "text",
+      "name": "t:sections.main-product.blocks.text.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Text block",
+          "label": "t:sections.main-product.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__2.label"
+            },
+            {
+              "value": "uppercase",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-product.blocks.title.name",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "t:sections.main-product.blocks.price.name",
+      "limit": 1
+    },
+    {
+      "type": "quantity_selector",
+      "name": "t:sections.main-product.blocks.quantity_selector.name",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "t:sections.main-product.blocks.variant_picker.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__1.label"
+            },
+            {
+              "value": "button",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            }
+          ],
+          "default": "button",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
+        }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "t:sections.main-product.blocks.buy_buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "default": true,
+          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "t:sections.main-product.blocks.description.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-product.blocks.share.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-product.blocks.share.settings.text.label",
+          "default": "Share"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.share.settings.title_info.content"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "t:sections.main-product.blocks.custom_liquid.name",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.label",
+          "info": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.info"
+        }
+      ]
+    },
+    {
+      "type": "collapsible_tab",
+      "name": "t:sections.main-product.blocks.collapsible_tab.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible row",
+          "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__1.label"
+            },
+            {
+              "value": "apple",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__2.label"
+            },
+            {
+              "value": "banana",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__3.label"
+            },
+            {
+              "value": "bottle",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__4.label"
+            },
+            {
+              "value": "box",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__5.label"
+            },
+            {
+              "value": "carrot",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__6.label"
+            },
+            {
+              "value": "chat_bubble",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__7.label"
+            },
+            {
+              "value": "check_mark",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__8.label"
+            },
+            {
+              "value": "clipboard",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__9.label"
+            },
+            {
+              "value": "dairy",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__10.label"
+            },
+            {
+              "value": "dairy_free",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__11.label"
+            },
+            {
+              "value": "dryer",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__12.label"
+            },
+            {
+              "value": "eye",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__13.label"
+            },
+            {
+              "value": "fire",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__14.label"
+            },
+            {
+              "value": "gluten_free",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__15.label"
+            },
+            {
+              "value": "heart",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__16.label"
+            },
+            {
+              "value": "iron",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__17.label"
+            },
+            {
+              "value": "leaf",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__18.label"
+            },
+            {
+              "value": "leather",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__19.label"
+            },
+            {
+              "value": "lightning_bolt",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__20.label"
+            },
+            {
+              "value": "lipstick",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__21.label"
+            },
+            {
+              "value": "lock",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__22.label"
+            },
+            {
+              "value": "map_pin",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__23.label"
+            },
+            {
+              "value": "nut_free",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__24.label"
+            },
+            {
+              "value": "pants",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__25.label"
+            },
+            {
+              "value": "paw_print",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__26.label"
+            },
+            {
+              "value": "pepper",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__27.label"
+            },
+            {
+              "value": "perfume",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__28.label"
+            },
+            {
+              "value": "plane",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__29.label"
+            },
+            {
+              "value": "plant",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__30.label"
+            },
+            {
+              "value": "price_tag",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__31.label"
+            },
+            {
+              "value": "question_mark",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__32.label"
+            },
+            {
+              "value": "recycle",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__33.label"
+            },
+            {
+              "value": "return",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__34.label"
+            },
+            {
+              "value": "ruler",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__35.label"
+            },
+            {
+              "value": "serving_dish",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__36.label"
+            },
+            {
+              "value": "shirt",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__37.label"
+            },
+            {
+              "value": "shoe",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__38.label"
+            },
+            {
+              "value": "silhouette",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__39.label"
+            },
+            {
+              "value": "snowflake",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__40.label"
+            },
+            {
+              "value": "star",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__41.label"
+            },
+            {
+              "value": "stopwatch",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__42.label"
+            },
+            {
+              "value": "truck",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__43.label"
+            },
+            {
+              "value": "washing",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__44.label"
+            }
+          ],
+          "default": "check_mark",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.label"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        }
+      ]
+    },
+    {
+      "type": "popup",
+      "name": "t:sections.main-product.blocks.popup.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Pop-up link text",
+          "label": "t:sections.main-product.blocks.popup.settings.link_label.label"
+        },
+        {
+          "id": "page",
+          "type": "page",
+          "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        }
+      ]
+    },
+    {
+      "type": "rating",
+      "name": "t:sections.main-product.blocks.rating.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.rating.settings.paragraph.content"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "default": true,
+      "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-product.settings.header.content",
+      "info": "t:sections.main-product.settings.header.info"
+    },
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "options": [
+        {
+          "value": "stacked",
+          "label": "t:sections.main-product.settings.gallery_layout.options__1.label"
+        },
+        {
+          "value": "thumbnail",
+          "label": "t:sections.main-product.settings.gallery_layout.options__2.label"
+        },
+        {
+          "value": "thumbnail_slider",
+          "label": "t:sections.main-product.settings.gallery_layout.options__3.label"
+        }
+      ],
+      "default": "stacked",
+      "label": "t:sections.main-product.settings.gallery_layout.label"
+    },
+    {
+      "type": "select",
+      "id": "media_size",
+      "options": [
+        {
+          "value": "small",
+          "label": "t:sections.main-product.settings.media_size.options__1.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.main-product.settings.media_size.options__2.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.main-product.settings.media_size.options__3.label"
+        }
+      ],
+      "default": "large",
+      "label": "t:sections.main-product.settings.media_size.label",
+      "info": "t:sections.main-product.settings.media_size.info"
+    },
+    {
+      "type": "select",
+      "id": "mobile_thumbnails",
+      "options": [
+        {
+          "value": "show",
+          "label": "t:sections.main-product.settings.mobile_thumbnails.options__1.label"
+        },
+        {
+          "value": "hide",
+          "label": "t:sections.main-product.settings.mobile_thumbnails.options__2.label"
+        }
+      ],
+      "default": "hide",
+      "label": "t:sections.main-product.settings.mobile_thumbnails.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_variants",
+      "default": false,
+      "label": "t:sections.main-product.settings.hide_variants.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "default": false,
+      "label": "t:sections.main-product.settings.enable_video_looping.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

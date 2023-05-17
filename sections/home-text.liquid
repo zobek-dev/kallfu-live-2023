@@ -1,0 +1,33 @@
+<div class="page-width">
+  <div class="py-12 md:py-14 text-left md:text-center">
+    {% render 'icon-manos', class: 'w-14 h-14 md:w-20 h-20 md:block md:mx-auto' %}
+    <h2 class="font-bold uppercase rich-title tracking-[1.5px] text-xl mt-8">{{ section.settings.title }}</h2>
+    <div class="tracking-[1.5px] my-6">
+      {{ section.settings.content }}
+    </div>
+    <a href="/pages/nosotros" class="btn-transparent block w-max mx-auto">
+      CONÓCENOS MÁS
+    </a>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Home Text",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "title",
+        "label": "Inserta el título"
+      }, {
+        "type": "richtext",
+        "id": "content",
+        "label": "Inserta el contenido"
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% comment %} SOMOS UNA EMPRESA NACIONAL CON DISEÑOS 
+SIMPLES Y  DE ESTILO INDUSTRIAL, FABRICADOS CON MATERIALES DURADEROS Y DE CALIDAD. {% endcomment %}

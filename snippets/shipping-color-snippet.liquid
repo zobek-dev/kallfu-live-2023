@@ -1,0 +1,68 @@
+
+{% liquid 
+    assign main_tag = "" 
+    if tags contains "DExpress"
+        assign main_tag = "DExpress" 
+        assign color = "#008000"
+    elsif tags contains "sameday"
+        assign main_tag = "sameday" 
+        assign color = "#008000"
+    elsif tags contains "3days"
+        assign main_tag = "3days" 
+        assign color = "#008000"
+    elsif tags contains "5days"
+        assign main_tag = "5days" 
+        assign color = "#008000"
+    elsif tags contains "7days"
+        assign main_tag = "7days" 
+        assign color = "#e5ab5a"
+    elsif tags contains "9days"
+        assign main_tag = "9days" 
+        assign color = "#e5ab5a"
+    elsif tags contains "10days"
+        assign main_tag = "10days" 
+        assign color = "#e5ab5a"
+    elsif tags contains "15days"
+        assign main_tag = "15days" 
+        assign color = "#e5ab5a"            
+    elsif tags contains "50days"
+        assign main_tag = "50days" 
+        assign color = "#ff0000"        
+    endif 
+%}
+
+<style>
+    #trafficColor-{{ product_id }}{
+        display:block !important;
+        background-color: {{ color }};
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+</style>
+{% if main_tag != "" %}
+<div class="flex gap-2 pb-2 items-center" data-color="{{ color }}" data-tag="{{ main_tag }}">
+    {% render 'icon-shipping' %}
+    <div id="trafficColor-{{ product_id }}"></div>
+    <p class="{{ size }} text-[8px] sm:text-[10px] uppercase tracking-[2.5px] leading-none">
+        {% case main_tag %}
+        {% when 'DExpress' %}
+            48 horas hábiles
+        {% when 'sameday' %}
+            Llega hoy    
+        {% when '3days' %}
+            2 a 4 días Express   
+        {% when '5days' %}
+            5 a 7 días hábiles
+        {% when '7days'%}
+            8 a 10 dias hábiles
+        {% when '9days' %}
+            9 a 16 días hábiles
+        {% when '10days' %}
+            10 a 15 días hábiles
+        {% when '15days' %}
+            15 a 20 días hábiles
+        {% endcase %}
+    </p>
+</div>
+{% endif %}

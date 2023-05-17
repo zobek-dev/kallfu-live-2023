@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "location-template",
+      "settings": {
+        "desktop_banner": "shopify:\/\/shop_images\/UBICACION-DESKTOP.png",
+        "tablet_banner": "shopify:\/\/shop_images\/UBICACION-TABLET.png",
+        "mobile_banner": "shopify:\/\/shop_images\/UBICACION-MOVIL.png"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

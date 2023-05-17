@@ -1,0 +1,74 @@
+<div class="page-width" x-data="{
+        skip:1,
+        prev(){
+          this.to((current, offset) => current - (offset * this.skip));
+        },
+        next(){
+          this.to((current, offset) => current + (offset * this.skip));
+        },
+        to(strategy){
+          let slider = this.$refs.icon_slider;
+          let current = slider.scrollLeft;
+          let offset = slider.firstElementChild.getBoundingClientRect().width;
+          slider.scrollTo({ left: strategy(current, offset), behavior:'smooth' });
+        },
+        focusableWhenVisible:{
+          'x-intersect:enter'(){
+            this.$el.removeAttribute('tabindex');
+          },
+          'x-intesect:leave'(){
+            this.$el.setAttribute('tabindex', '-1');
+          },
+        }
+      }"><div class="py-6 relative">
+    <ul class="flex overflow-x-scroll snap-x snap-mandatory no-scrollbar" x-ref="icon_slider">
+      {% for block in section.blocks %}
+        <li class="flex-shrink-0 w-[335px] flex flex-col space-x-3 items-center snap-start">
+          <img
+            src="{{ block.settings.image | image_url: width: 45 }}"
+            width="45"
+            height="45"
+            class="aspect-square object-contain object-center"
+            alt="{{ block.settings.title | escape }}"
+            loading="eager">
+          <span class="text-sm tracking-[1.5px] uppercase block mt-2">
+            {{ block.settings.title }}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+    <button class="absolute block lg:hidden top-1/2 left-0 -translate-y-1/2 w-8 h-8" @click="prev">
+      {% render 'icon-arrow-right', class: 'rotate-180' %}
+      <span class="sr-only">Anterior</span>
+    </button>
+    <button class="absolute block lg:hidden top-1/2 right-0 -translate-y-1/2 w-8 h-8" @click="next">
+      {% render 'icon-arrow-right', class: '' %}
+      <div class="sr-only">Siguiente</div>
+    </button>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "icons-slider",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "icon",
+        "name": "Iconos",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "insertar el icono"
+          }, {
+            "type": "text",
+            "id": "title",
+            "label": "insertar el titulo"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

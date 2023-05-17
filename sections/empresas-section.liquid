@@ -1,0 +1,72 @@
+<div x-data="{swiper:null}"
+    x-init="swiper= new Swiper($refs.slider, {
+        slidesPerView: 5,
+        loop:true,
+        spaceBetween: 10,
+        autoplay:true,
+        navigation:{
+            nextEl: $refs.next,
+            prevEl: $refs.prev,
+        },
+        breakpoints:{
+            150: {
+                slidesPerView: 1
+            },
+            500: {
+                slidesPerView: 2
+            },
+            890: {
+                slidesPerView: 4
+            },
+            1440: {
+                slidesPerView: 5
+            },
+        }
+    })">
+    <div class="page-width">
+        <h2 class="uppercase tracking-[1.5px] text-center text-xl font-bold mb-8">Empresas que han confiado nosotros</h2>
+        <div class="overflow-hidden mb-12 relative" x-ref="slider">
+            <ul class="swiper-wrapper items-center">
+                {% for block in section.blocks %}
+                    <li class="swiper-slide">
+                        <a href="/pages/empresas" class="flex w-full justify-center">
+                            <img src="{{ block.settings.logo | img_url: '200x' }}" alt="{{ block.settings.name }}" loading="lazy" title="{{ block.settings.name }}" width="160">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="swiper-button-prev" x-ref="prev" style="color:grey;"></div>
+            <div class="swiper-button-next" x-ref="next" style="color:grey;"></div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Slider para empresas",
+    "blocks":[
+        {
+            "name":"empresa",
+            "type": "slide",
+            "settings":[
+               {
+                   "type": "image_picker",
+                   "id": "logo",
+                   "label": "Logo para la empresa"
+               },
+               {
+                   "type": "text",
+                   "id": "name",
+                   "label": "Nombre de la empresa"
+               } 
+            ]
+        }
+    ],
+    "presets":[
+        {
+            "name": "Slider para empresas",
+            "category": "slideshow"
+        }
+    ]
+}
+{% endschema %}

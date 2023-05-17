@@ -1,0 +1,346 @@
+{{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+
+<style>
+    .swiper-button-next, .swiper-button-prev {
+        color:#aaa !important;
+        cursor:pointer;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .swiper-button-next:hover, .swiper-button-prev:hover{
+        opacity: 0.7;
+    }
+
+    .swiper-slide{
+        opacity: 0.5;
+    }
+
+    .swiper-slide-active{
+        opacity: 1;
+    }
+</style>
+
+<div class="page-width">
+    {% render 'breadcrumb' %}
+</div>
+<div class="hero relative">
+    <picture>
+        <source media="(min-width: 768px)" srcset="{{ section.settings.image_desktop | img_url: '2040x' }}">
+        <source media="(min-width: 150px)" srcset="{{ section.settings.image_mobile | img_url: '800x' }}">
+        <img 
+        src="{{ sections.settings.image_desktop | img_url: '2040x' }}" 
+        alt="{{ sections.settings.image_desktop.alt }}" 
+        loading="lazy" 
+        width="{{ section.settings.image_desktop.width }}"
+        height="{{ section.settings.image_desktop.height }}"
+        class="w-full object-cover object-center"
+        >
+    </picture>
+    <div class="absolute flex  flex-col w-full h-full text-white justify-center items-center text-center top-0 left-0">
+        <h2 class="text-xl md:text-2xl lg:text-4xl xl:text-6xl  tracking-[8px] md:tracking-[14px] font-bold mb-4 md:mb-8 mx-2">
+            ATRÉVETE & RENUEVA<br>
+            TU ESPACIO DE TRABAJO
+        </h2 >
+        <p  class="text-sm sm:text-base md-text-xl lg:text-2xl xl:text-3xl tracking-[4px] font-bold uppercase mx-2">
+          muebles de calidad, diseño funcional y minimalista  
+        </p>
+    </div>
+</div>
+<div class="page-width">
+    <div class="flex flex-col items-center text-center my-12">
+        {% render 'icon-manos', class: 'block mx-0 w-[71px] h-[71px]'%}
+        <h2 class="tracking-[4px] uppercase font-semibold text-2xl my-8">
+           BUSCA EN KALLFÜ LO QUE NECESITAS
+        </h2>
+        <p class="tracking-[1.5px] mb-4">
+            En KALLFÜ tenemos el mobiliario que necesitas, muebles de calidad, con diseño funcional y minimalista que te permiten optimizar de manera perfecta el espacio de trabajo para ti y tu equipo. Realizamos ventas a distintos tipos de empresas y/o pymes. Cada venta es realizada con su factura correspondiente, brindando la mejor atención a cada cliente que confía en nuestro trabajo.
+        </p>
+        <p class="tracking-[1.5px] uppercase font-bold my-8">
+            ¿ QUIERES UN MUEBLES ESPACIAL PARA TU TRABAJO ? ¿ TIENES UN PROYECTO ESPECIAL EN MENTE ? EN KALLFÜ TAMBIÉN REALIZAMOS PRODUCTOS PARA EMPRESAS, RELLENA EL FORMULARIO A CONTINUACIÓN Y CUENTÁNOS TU IDEA.
+        </p>
+    </div>
+
+    <div class="w-full bg-[#ddd] py-12 px-4 mb-20" id="Form">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl tracking-[2.5px] font-bold mb-4">CONTACTANOS AQUÍ</h2>
+            <p class="tracking-[1.5px]">Nuestro equipo se contactará a la brevedad contigo.</p>
+        </div>
+        {% form 'contact' %}      
+        <div class="{% if form.posted_successfully? %}hidden{% else %}grid{% endif %} grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="col-span-1">
+                <div class="md:px-10 py-2">
+                    <label for="full-name" class="block w-full tracking-[1.5px] text-base pb-2">
+                        NOMBRE COMPLETO :
+                    </label>
+                    <input type="text" id="full-name" name="contact[nombre_completo]" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                </div>
+                <div class="md:px-10 py-2">
+                    <label for="email" class="block w-full tracking-[1.5px] text-base pb-2">
+                        CORREO ELECTRÓNICO :
+                    </label>
+                    <input type="text" id="email" name="contact[email]" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                </div>
+                <div class="md:px-10 py-2">
+                    <label for="comuna" class="block w-full tracking-[1.5px] text-base pb-2">
+                        COMUNA :
+                    </label>
+                    {% comment %}
+                    <input type="text" id="comuna" name="contact[comuna]" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                    {% endcomment %}
+                    <select name="contact[comuna]" id="comuna" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                        <option disabled selected>Selecciona una comuna</option>
+                        <option value="Santiago">Santiago</option>
+                        <option value="Cerrillos">Cerrillos</option>
+                        <option value="Cerro Navia">Cerro Navia</option>
+                        <option value="Conchalí">Conchalí</option>
+                        <option value="El Bosque">El Bosque</option>
+                        <option value="Estación Central">Estación Central</option>
+                        <option value="Huechuraba">Huechuraba</option>
+                        <option value="Independencia">Independencia</option>
+                        <option value="La Cisterna">La Cisterna</option>
+                        <option value="La Florida">La Florida</option>
+                        <option value="La Granja">La Granja</option>
+                        <option value="La Pintana">La Pintana</option>
+                        <option value="La Reina">La Reina</option>
+                        <option value="Las Condes">Las Condes</option>
+                        <option value="Lo Barnechea">Lo Barnechea</option>
+                        <option value="Lo Espejo">Lo Espejo</option>
+                        <option value="Lo Prado">Lo Prado</option>
+                        <option value="Macul">Macul</option>
+                        <option value="Maipú">Maipú</option>
+                        <option value="Ñuñoa">Ñuñoa</option>
+                        <option value="Pedro Aguirre Cerda">Pedro Aguirre Cerda</option>
+                        <option value="Peñalolén">Peñalolén</option>
+                        <option value="Providencia">Providencia</option>
+                        <option value="Pudahuel">Pudahuel</option>
+                        <option value="Quilicura">Quilicura</option>
+                        <option value="Quinta Normal">Quinta Normal</option>
+                        <option value="Recoleta">Recoleta</option>
+                        <option value="Renca">Renca</option>
+                        <option value="Joaquín">Joaquín</option>
+                        <option value="San Miguel">San Miguel</option>
+                        <option value="San Ramón">San Ramón</option>
+                        <option value="Vitacura">Vitacura</option>
+                        <option value="Puente Alto">Puente Alto</option>
+                        <option value="Pirque">Pirque</option>
+                        <option value="San José de Maipú">San José de Maipú</option>
+                        <option value="Colina">Colina</option>
+                        <option value="Lampa">Lampa</option>
+                        <option value="Tiltil">Tiltil</option>
+                        <option value="San Bernardo">San Bernardo</option>
+                        <option value="Buin">Buin</option>
+                        <option value="Calera de Tango">Calera de Tango</option>
+                        <option value="Paine">Paine</option>
+                        <option value="Melipilla">Melipilla</option>
+                        <option value="Alhué">Alhué</option>
+                        <option value="Curacaví">Curacaví</option>
+                        <option value="María Pinto">María Pinto</option>
+                        <option value="San Pedro">San Pedro</option>
+                        <option value="Talagante">Talagante</option>
+                        <option value="El Monte">El Monte</option>
+                        <option value="Isla de Maipo">Isla de Maipo</option>
+                        <option value="Padre Hurtado">Padre Hurtado</option>
+                        <option value="Peñaflor">Peñaflor</option>
+                    </select>
+                </div>
+                <div class="md:px-10 py-2">
+                    <label for="telefono" class="block w-full tracking-[1.5px] text-base pb-2">
+                        TELÉFONO:
+                    </label>
+                    <input type="text" id="telefono" name="contact[telefono]" class="block w-full border border-[#121212] py-2 outline-[#121212] bg-transparent">
+                </div>
+            </div>
+            <div class="col-span-1 flex flex-col gap-6 lg:pr-6">
+              <div>
+                  <label for="body" class="block w-full tracking-[1.5px] text-base pb-2">MENSAJE :</label>
+                  <textarea name="contact[body]" id="body" rows="10" class="block border border-[#121212] outline-[#121212] bg-transparent"></textarea>
+              </div>
+              <button type="submit" class="self-end bg-[#121212] text-white tracking-[1.5px] font-bold px-2 py-2">
+                ENVIAR
+              </button>  
+            </div>
+        </div>
+        <div class="{% if form.posted_successfully? %}flex{% else %}hidden{% endif %} flex-col justify-center items items-center h-[70vh] w-full text-center">
+            <h2 class="text-2xl font-bold tracking-[1.5px] my-6">Gracias. Te contactaremos<br> dentro de las próximas 48 hrs.</h2>
+            <p class="text-sm tracking-[1.5px] mb-2">Si buscas una respuesta inmediata</p>
+            <a href="https://api.whatsapp.com/send/?phone=56979532074&text=Hola%2C+quiero+saber+mas+sobre+los+descuentos+del+CYBER&app_absent=0" class="block uppercase py-2 px-4 border border-[#121212] tracking-[1.5px] mx-0 w-[280px]" target="_blank">Escribenos aquí</a>
+            <p class="text-sm tracking-[1.5px] my-2">o continua viendo</p>
+            <a href="/collections/all" class="block uppercase py-2 px-4 border border-[#121212] tracking-[1.5px] mx-0 w-[280px]">Nuestros productos</a>
+        </div>
+        {% endform %}
+    </div>
+
+    <div x-data="{slider: null}"
+    x-init="slider = new Swiper($refs.slider, {
+        slidesPerView: 4,
+        loop:true,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: $refs.next,
+            prevEl: $refs.prev,
+        },
+        autoplay:true,
+        breakpoints:{
+            150: {
+                slidesPerView: 1
+            },
+            500: {
+                slidesPerView: 2
+            },
+            890: {
+                slidesPerView: 4
+            },
+            1440: {
+                slidesPerView: 5
+            },
+        }
+
+    })"
+    class="relative mb-12"
+    >
+        <h2 class="text-[20px] md:text-[25px] tracking-[2.5px] text-center mb-4 font-bold">EMPRESAS QUE HAN CONFIADO EN NOSOTROS</h2>       
+        <div class="swiper-container relative overflow-hidden" x-ref="slider"> 
+            <ul class="swiper-wrapper items-center">
+                {% for block in section.blocks %}
+                    {% if block.type == 'slide' %}
+                        <li class="swiper-slide flex justify-center w-[160px]" style="opacity: 1;">
+                            {% if block.settings.empresa_url != blank  %}
+                            <a href="{{ block.settings.empresa_url }}" rel="nofollow noreferrer" target="_blank">   
+                            {% endif %}
+                                <img src="{{ block.settings.image_empresa | img_url: '160x' }}" alt="{{ block.settings.alt_empresa }}" loading="lazy">
+                            {% if block.settings.empresa_url != blank %}    
+                            </a>
+                            {% endif %}    
+                        </li>
+                    {% endif %}    
+                {% endfor %} 
+            </ul>
+            <div class="swiper-button-prev" x-ref="prev"></div>
+            <div class="swiper-button-next" x-ref="next"></div>
+        </div>
+    </div>
+
+    <div class="gallery mb-[30px]">
+        <h2 class="text-[20px] md:text-[25px] tracking-[2.5px] text-center mb-4 font-bold">ALGUNOS DE NUESTROS TRABAJOS</h2>  
+        <div class="swiper-container relative overflow-hidden" id="gallery">
+            <ul class="swiper-wrapper">
+                {% for block in section.blocks %}
+                    {% if block.type == 'slideshow' %}
+                    <li class="swiper-slide flex justify-center items-center">
+                        <img src="{{ block.settings.image | img_url: '1600x' }}" alt="{{ slide.alt_text }}" loading="lazy" class="aspect-square sm:aspect-video object-cover object-center"> 
+                    </li>
+                    {% endif %} 
+                {% endfor %}
+            </ul>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+        <div class="swiper-container relative overflow-hidden mt-[16px]" id="thumbs">
+            <ul class="swiper-wrapper">
+                {% for block in section.blocks %}
+                {% if block.type == 'slideshow' %}
+                <li class="swiper-slide border border-[#121212] cursor-pointer w-[200px] flex justify-center items-center">
+                     <img src="{{ block.settings.image | img_url: '200x' }}" alt="{{ slide.alt_text }}" loading="lazy" class="aspect-square object-cover object-center">
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% comment %}
+    <p class="tracking-[1.5px] my-10 text-center text-[18px]">
+        ¿ Te interesa adquirir nuestros pruductos ? <a href="https://api.whatsapp.com/send/?phone=56979532074&text=Hola%2C+quiero+saber+mas+sobre+los+descuentos+del+CYBER" class="text-[#00abdd] font-bold hover:underline hover:underline-offset-2" target="_blank">Envíanos un mensaje aquí.</a>  
+    </p>
+    {% endcomment %}
+
+   
+</div>
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', ()=> {
+        let elemCount = document.querySelector('#gallery > ul').childElementCount;
+        const gallery = new Swiper('#gallery', {
+            slidesPerView: 1,
+            loop: true,
+            spaceBetween: 10,
+            centeredSlides: true,
+            loopedSlides: elemCount, //スライドの枚数と同じ値を指定 tienes que encontrar fijar el numero de elemento en el slide
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        });
+        const thumbs = new Swiper('#thumbs', {
+            slidesPerView: 5,
+            slideToClickedSlide: true,
+            centeredSlides: true,
+            spaceBetween: 10,
+            loopedSlides: elemCount,
+            loop: true,
+            breakpoints:{
+                150: {
+                    slidesPerView: 5 
+                },
+                768:{
+                    slidesPerView: 7
+                }
+            }
+        });
+
+        gallery.controller.control = thumbs;
+        thumbs.controller.control = gallery;
+    })  
+</script>
+
+{% schema %}
+{
+    "name": "Empresas",
+    "settings": [
+        {
+            "type":"image_picker",
+            "id": "image_desktop",
+            "label": "Hero para desktop"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Hero para mobile"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "slideshow",
+            "name": "Galería",
+            "settings":[
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Agregar la imagen de la galeria"
+                }
+            ]
+        },
+        {
+           "type": "slide",
+           "name": "Empresas",
+           "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image_empresa",
+                    "label": "Agrega el icono de la empresa"
+                },
+                {
+                    "type": "text",
+                    "id": "alt_empresa",
+                    "label": "Agrega el nombre de la empresa"
+                },
+                {
+                    "type": "url",
+                    "id": "empresa_url",
+                    "label": "url de la empresa"
+                }
+           ]
+        }
+    ]
+}
+{% endschema %}

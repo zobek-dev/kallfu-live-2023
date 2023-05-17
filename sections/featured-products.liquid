@@ -1,0 +1,61 @@
+<div 
+    x-data="{ swiper:null }" 
+    x-init="swiper = new Swiper($refs.products, {
+        slidesPerView: 4.2,
+        spaceBetween: 16,
+
+        breakpoints:{
+            150:{
+                slidesPerView: 1.2 
+            },
+            550:{
+                slidesPerView: 2.2
+            },
+            800:{
+                slidesPerView: 3.2 
+            },
+            1200:{
+                slidesPerView: 4.2
+            }
+        }
+    })"
+>
+    <div class="page-width overflow-hidden">
+        <div class="flex md:justify-between flex-col  md:flex-row md:items-center py-4 gap-2">
+            <h2 class="uppercase text-xl tracking-[2.5px] text-center">Productos destacados</h2>
+            <div class="controls flex justify-end space-x-2">
+                <button @click="swiper.slidePrev()">
+                    {% render 'icon-arrow', class: 'rotate-180 w-8' %}
+                    <span class="sr-only">Anterior</span>
+                </button>
+                <button @click="swiper.slideNext()">
+                    {% render 'icon-arrow', class: 'w-8' %}
+                    <span class="sr-only">Siguiente</span>
+                </button>
+            </div>
+        </div>  
+        <div class="swiper-container relative overflow-hidden pb-4" x-ref="products">
+          <ul class="swiper-wrapper" role="list">
+              {% assign featured_products = collections[section.settings.featured_collection].products %}
+              {% for featured_product in featured_products %}
+                {% render 'card-product-fixed', 
+                  product_card: featured_product, 
+                  class: 'swiper-slide'
+                %}
+              {% endfor %}
+          </ul>    
+        </div>    
+    </div> 
+</div>
+{% schema %}
+{
+    "name":"Productos Destacados",
+    "settings":[
+        {
+            "type":"collection",
+            "id": "featured_collection",
+            "label": "Seleccione la colección destacada" 
+        }
+    ]
+}
+{% endschema %}
