@@ -133,9 +133,9 @@
                        <li class="py-2">
                            <span>Transferencia bancarias</span>
                        </li>
-                       <li class="py-2">
+                       {% comment %} <li class="py-2">
                            <img src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/2.WebpayPlus_FN_800px_medium_1_medium.png?v=1637580483" alt="webpay plus" width="108" loading="lazy">
-                       </li>
+                       </li> {% endcomment %}
                        <li class="py-2">
                            <img src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/LOGO_MERCADO_PAGO_medium_1_medium.png?v=1637580491" alt="mercado pago" width="108" loading="lazy">
                        </li>
@@ -221,7 +221,8 @@
            </div>
            <div class="copyright flex justify-between items-center mt-14">
                <div>
-                   © KALLFÜ PRO | {{ 'now' | date: '%Y' }}
+                  <p class="text-sm uppercase leading-[1.8]">© Kallfü Pro | {{ 'now' | date: '%Y' }}</p>
+                  <p class="text-sm leading-[1.8]">Diseñado y desarrollado por <a href="https://mediahuella.com/" class="underline">Mediahuella</a></p>
                </div>
                <div>
                    <img src="https://cdn.shopify.com/s/files/1/0511/7879/9287/files/Sello_Confianza_Ecommerce_CCS-01.png?v=1631617448" alt="Cámara de comercio de Santiago" width="60" height="60" loading="lazy">

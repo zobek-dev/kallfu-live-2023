@@ -57,7 +57,7 @@
           {%- endcomment -%}
     </div>
     <div class="pt-4 pb-2 {% if page_type == 'collection' or page_type == 'search_results' %}px-2 md:px-4{% else %}px-4{% endif %}">
-      {% render 'shipping-color-snippet', tags: card_product.tags, size: 'text-[10px]', product_id: card_product.selected_or_first_available_variant.id %}
+      {% render 'shipping-color-snippet', product: card_product, tags: card_product.tags, size: 'text-[10px]', product_id: card_product.selected_or_first_available_variant.id %}
         <p class="uppercase tracking-[1.5px] text-sm md:text-base mb-2 leading-none">{{ card_product.title | truncatewords: 7 }}</p>
         
         {% if card_product.price < card_product.compare_at_price_max %}

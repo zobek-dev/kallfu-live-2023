@@ -4,6 +4,9 @@
     if tags contains "DExpress"
         assign main_tag = "DExpress" 
         assign color = "#008000"
+    elsif tags contains "hoy"
+        assign main_tag = "hoy" 
+        assign color = "#00a650"    
     elsif tags contains "sameday"
         assign main_tag = "sameday" 
         assign color = "#008000"
@@ -40,14 +43,19 @@
         border-radius: 50%;
     }
 </style>
+{% liquid
+  echo product.tags[0]
+%}
 {% if main_tag != "" %}
 <div class="flex gap-2 pb-2 items-center" data-color="{{ color }}" data-tag="{{ main_tag }}">
     {% render 'icon-shipping' %}
+    {% if main_tag != 'hoy' %}
     <div id="trafficColor-{{ product_id }}"></div>
+    {% endif %}
     <p class="{{ size }} text-[8px] sm:text-[10px] uppercase tracking-[2.5px] leading-none">
         {% case main_tag %}
-        {% when 'DExpress' %}
-            48 horas hábiles
+        {% when 'hoy' %}
+            <span class="bg-[#008000] text-white p-1 rounded-sm text-[10px] uppercase font-medium inline-flex tracking-[1px]">Llega gratis hoy</span>
         {% when 'sameday' %}
             Llega hoy    
         {% when '3days' %}
@@ -66,3 +74,6 @@
     </p>
 </div>
 {% endif %}
+
+
+{% comment %} #00a650; {% endcomment %}
