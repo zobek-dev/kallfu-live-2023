@@ -1206,9 +1206,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-sm {
   border-radius: 0.125rem;
 }
-.rounded-md {
-  border-radius: 0.375rem;
-}
 .border {
   border-width: 1px;
 }
@@ -1324,10 +1321,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-gray-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-}
-.bg-\[\#00a650\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 166 80 / var(--tw-bg-opacity));
 }
 .bg-\[\#008000\] {
   --tw-bg-opacity: 1;
@@ -1567,6 +1560,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .italic {
   font-style: italic;
 }
+.leading-\[1\.8\] {
+  line-height: 1.8;
+}
 .leading-tight {
   line-height: 1.25;
 }
@@ -1575,9 +1571,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .leading-none {
   line-height: 1;
-}
-.leading-\[1\.8\] {
-  line-height: 1.8;
 }
 .tracking-\[2\.5px\] {
   letter-spacing: 2.5px;
@@ -1593,9 +1586,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .tracking-\[1px\] {
   letter-spacing: 1px;
-}
-.tracking-normal {
-  letter-spacing: 0em;
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -1949,6 +1939,10 @@ textarea {
 
 .rich-content p {
   margin-bottom: 1rem;
+}
+
+summary::-webkit-details-marker {
+  display: none;
 }
 
 .focus-within\:border-2:focus-within {

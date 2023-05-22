@@ -43,9 +43,7 @@
         border-radius: 50%;
     }
 </style>
-{% liquid
-  echo product.tags[0]
-%}
+
 {% if main_tag != "" %}
 <div class="flex gap-2 pb-2 items-center" data-color="{{ color }}" data-tag="{{ main_tag }}">
     {% render 'icon-shipping' %}
@@ -56,8 +54,9 @@
         {% case main_tag %}
         {% when 'hoy' %}
             <span class="bg-[#008000] text-white p-1 rounded-sm text-[10px] uppercase font-medium inline-flex tracking-[1px]">Llega gratis hoy</span>
+            {% comment %} <span class="bg-[#008000] text-white p-1 rounded-sm text-[10px] uppercase font-medium inline-flex tracking-[1px]">Llega gratis el lunes</span> {% endcomment %}
         {% when 'sameday' %}
-            Llega hoy    
+            Llega hoy     
         {% when '3days' %}
             2 a 4 días Express   
         {% when '5days' %}

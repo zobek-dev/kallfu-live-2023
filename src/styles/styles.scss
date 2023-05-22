@@ -268,3 +268,7 @@ textarea {
     @apply mb-4
   }
 }
+
+summary::-webkit-details-marker {
+  display: none;
+} 
